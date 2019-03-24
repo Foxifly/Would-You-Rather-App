@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { Redirect } from "react-router-dom";
 import { handleSwitchUser } from "../actions/authUser";
 import "../style/loginpage.css";
+
 import Nav from "./Nav";
 
 class LoginScreen extends Component {
@@ -11,16 +13,19 @@ class LoginScreen extends Component {
   };
 
   handleSubmit = e => {
-    console.log("The login id auth: ", this.state.id);
+    const {id } = this.state;
+    const {dispatch} = this.props
+    console.log("The login id auth: ", id);
     e.preventDefault();
-    if (this.state.id) {
-      this.props.dispatch(handleSwitchUser(this.state.id));
+    if (id) {
+      dispatch(handleSwitchUser(id));
       this.setState(() => ({
-        isBlank: true
+        isBlank: true,
+        toHome: id ? true : false
       }));
     } else {
       this.setState(() => ({
-        isBlank: false
+        isBlank: false,
       }));
     }
   };
@@ -39,6 +44,10 @@ class LoginScreen extends Component {
   };
 
   render() {
+    console.log(this.state.toHome)
+    if (this.state.toHome) {
+      return <Redirect to="/welcome" />;
+    }
     return (
 
       <div className="login-container">
