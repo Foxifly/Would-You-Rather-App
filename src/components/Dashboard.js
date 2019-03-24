@@ -5,7 +5,7 @@ class Dashboard extends Component {
   render() {
     return (
       <div>
-        <Nav navItems={["Home", "My Questions", "Leaderboard", "Log Out"]} />
+        <Nav navItems={true} />
         <p>DASH</p>
       </div>
     );

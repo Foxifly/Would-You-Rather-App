@@ -50,7 +50,7 @@ class LoginScreen extends Component {
     }
     return (
       <div className="login-container">
-        <Nav />
+        <Nav navItems={false} />
         <div className="login-box">
           <div className="login-header">
             <h1>Welcome, let's play!</h1>
