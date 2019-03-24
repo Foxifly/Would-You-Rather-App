@@ -5,7 +5,7 @@ import LoginScreen from "./LoginScreen";
 import "../style/app.css";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
-import Nav from "./Nav"
+import Dashboard from "./Dashboard"
 
 class App extends Component {
   componentDidMount() {
@@ -15,7 +15,7 @@ class App extends Component {
     return (
       <Router>
       <Route path="/" exact component={LoginScreen} />
-      <Route path="/welcome" exact component={Nav} />
+      <Route path="/dashboard" exact component={Dashboard} />
 
       </Router>
     );

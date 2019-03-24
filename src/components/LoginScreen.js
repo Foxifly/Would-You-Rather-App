@@ -13,8 +13,8 @@ class LoginScreen extends Component {
   };
 
   handleSubmit = e => {
-    const {id } = this.state;
-    const {dispatch} = this.props
+    const { id } = this.state;
+    const { dispatch } = this.props;
     console.log("The login id auth: ", id);
     e.preventDefault();
     if (id) {
@@ -25,7 +25,7 @@ class LoginScreen extends Component {
       }));
     } else {
       this.setState(() => ({
-        isBlank: false,
+        isBlank: false
       }));
     }
   };
@@ -44,37 +44,39 @@ class LoginScreen extends Component {
   };
 
   render() {
-    console.log(this.state.toHome)
+    console.log(this.state.toHome);
     if (this.state.toHome) {
-      return <Redirect to="/welcome" />;
+      return <Redirect to="/dashboard" />;
     }
     return (
-
       <div className="login-container">
-      <Nav/>
-      <div className="login-box">
-      <div className="login-header">
-        <h1>Welcome, let's play!</h1>
-        </div>
+        <Nav />
+        <div className="login-box">
+          <div className="login-header">
+            <h1>Welcome, let's play!</h1>
+          </div>
 
-        <h2>Log in to get started.</h2>
+          <h2>Log in to get started.</h2>
 
-        <form onSubmit={this.handleSubmit} className="login-form">
-        <div className="select-container">
-          <select className="login-id" onChange={this.handleChange}>
-            <option />
-            <option value="sarahedo">Sarah Edo</option>
-            <option value="tylermcginnis">Tyler McGinnis</option>
-            <option value="johndoe">John Doe</option>
-          </select>
-          <br/>
-          <button className="login-button" type="submit"> Login </button>
+          <form onSubmit={this.handleSubmit} className="login-form">
+            <div className="select-container">
+              <select className="login-id" onChange={this.handleChange}>
+                <option />
+                <option value="sarahedo">Sarah Edo</option>
+                <option value="tylermcginnis">Tyler McGinnis</option>
+                <option value="johndoe">John Doe</option>
+              </select>
+              <br />
+              <button className="login-button" type="submit">
+                {" "}
+                Login{" "}
+              </button>
             </div>
-        </form>
+          </form>
 
-        {this.state.isBlank === false ? (
-          <p className="invalid-user"> Please select a valid user </p>
-        ) : null}
+          {this.state.isBlank === false ? (
+            <p className="invalid-user"> Please select a valid user </p>
+          ) : null}
         </div>
       </div>
     );

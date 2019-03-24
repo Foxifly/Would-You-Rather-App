@@ -6,6 +6,7 @@ class Nav extends Component {
   };
   componentDidMount() {
     const { navItems } = this.props;
+    console.log(navItems)
     if (navItems) {
       //render regular navbar
       this.setState({ isLogin: false });
@@ -16,11 +17,11 @@ class Nav extends Component {
   }
 
   render() {
-    const { navItems } = this.state;
+    const { isLogin } = this.state;
     return (
       <div>
-        {!navItems && <div>I AM THE LOGIN NAVBAR HEAR ME ROAR</div>}
-        {navItems && <div>I AM THE RUGULUR NAVBAR HEAR ME ROAR</div>}
+        {isLogin && <div>I AM THE LOGIN NAVBAR HEAR ME ROAR</div>}
+        {!isLogin && <div>I AM THE RUGULUR NAVBAR HEAR ME ROAR</div>}
       </div>
     );
   }
