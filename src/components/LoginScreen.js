@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { handleSwitchUser } from "../actions/authUser";
 import "../style/loginpage.css";
+import Nav from "./Nav";
 
 class LoginScreen extends Component {
   state = {
@@ -39,7 +40,9 @@ class LoginScreen extends Component {
 
   render() {
     return (
+
       <div className="login-container">
+      <Nav/>
       <div className="login-box">
       <div className="login-header">
         <h1>Welcome, let's play!</h1>
