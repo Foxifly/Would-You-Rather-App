@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { handleSwitchUser } from "../actions/authUser";
+import "../style/loginpage.css";
 
 class LoginScreen extends Component {
   state = {
@@ -38,23 +39,31 @@ class LoginScreen extends Component {
 
   render() {
     return (
-      <div>
-        <h1>Welcome to the would you rather app!</h1>
-        <h2>Please sign in to continue</h2>
+      <div className="login-container">
+      <div className="login-box">
+      <div className="login-header">
+        <h1>Welcome, let's play!</h1>
+        </div>
+
+        <h2>Log in to get started.</h2>
 
         <form onSubmit={this.handleSubmit} className="login-form">
-          <select onChange={this.handleChange}>
+        <div className="select-container">
+          <select className="login-id" onChange={this.handleChange}>
             <option />
             <option value="sarahedo">Sarah Edo</option>
             <option value="tylermcginnis">Tyler McGinnis</option>
             <option value="johndoe">John Doe</option>
           </select>
-          <button type="submit"> Submit </button>
+          <br/>
+          <button className="login-button" type="submit"> Login </button>
+            </div>
         </form>
 
         {this.state.isBlank === false ? (
-          <p> Please select a valid user </p>
+          <p className="invalid-user"> Please select a valid user </p>
         ) : null}
+        </div>
       </div>
     );
   }
