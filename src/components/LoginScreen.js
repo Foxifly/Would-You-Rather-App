@@ -1,15 +1,18 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { handleSwitchUser } from "../actions/authUser";
 
 class LoginScreen extends Component {
   state = {
     id: "",
     isBlank: null
   };
+
   handleSubmit = e => {
     console.log("The login id auth: ", this.state.id);
     e.preventDefault();
     if (this.state.id) {
+      this.props.dispatch(handleSwitchUser(this.state.id));
       this.setState(() => ({
         isBlank: true
       }));
@@ -32,6 +35,7 @@ class LoginScreen extends Component {
       }));
     }
   };
+
   render() {
     return (
       <div>
