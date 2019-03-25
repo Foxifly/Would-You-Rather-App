@@ -6,23 +6,26 @@ class Dashboard extends Component {
   render() {
 
     const {authedUser, questions} = this.props;
+
     return (
       <div>
         <Nav navItems={true} />
         <p>Welcome {this.props.authedUser}</p>
         <Question/>
         <ul>
-        {questions && questions.map((question) =>  <li key={question.id}>{question.optionOne}</li>   )}
+        {questions && questions.map((question) =>  <li key={question}><Question id={question}/></li>   )
+      }
         </ul>
       </div>
     );
   }
 }
 
-function mapStateToProps({ authedUser, users, questions }, { id }) {
+function mapStateToProps({ authedUser, users, questions }) {
+  console.log(Object.keys(questions))
   return {
-    authedUser,
-    questions,
+    questions: Object.keys(questions),
+    authedUser
   };
 }
 export default connect(mapStateToProps)(Dashboard);
