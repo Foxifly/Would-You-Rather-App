@@ -12,7 +12,7 @@ class QuestionSorter extends Component {
     })
   }
   render() {
-    console.log("page props: ", this.props.page)
+
     const {
       question,
       currentUser,
@@ -43,16 +43,16 @@ class QuestionSorter extends Component {
             <div className="my-answered-questions">
               {Object.keys(this.props.currentUserAnswers).map(
                 userA =>
-                  userA !== question.id && <Question key={question.id} question={question} category="A"  />
+                  userA === question.id && <Question key={question.id} question={question} category="A"  />
               )}
             </div>
           )}
 
           {view === "U" && (
-            <div className="my-answered-questions">
+            <div className="my-unanswered-questions">
               {Object.keys(this.props.currentUserAnswers).map(
-                userA =>
-                  userA === question.id && <Question key={question.id} question={question} category="U"  />
+                userU => console.log(userU,  question.id, userU === question.id)
+                  //userU !== question.id && <Question key={question.id} question={question} category="U"/>
               )}
             </div>
           )}
