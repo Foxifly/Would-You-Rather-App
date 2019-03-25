@@ -5,6 +5,9 @@ import Answered from "./Answered";
 import Unanswered from "./Unanswered";
 
 class QuestionSorter extends Component {
+  state = {
+    view: "M" //M = My questions / A = Answered / U = Unanswered - default M
+  };
   render() {
     const {
       question,
@@ -13,33 +16,43 @@ class QuestionSorter extends Component {
       currentUserAnswers
     } = this.props;
 
+    const { view } = this.state;
+
     return (
       <div className="question">
         <div className="question-container">
           {/*he questions that the user created*/}
-          <div className="my-questions">
-          
-          <h3>My Questions</h3>
-          {currentUserQuestions.map(
-            userQ =>
-              userQ === question.id && <UserQuestions question={question} />
+
+          {view === "M" && (
+            <div className="my-questions">
+              {currentUserQuestions.map(
+                userQ =>
+                  userQ === question.id && <UserQuestions question={question} />
+              )}
+            </div>
           )}
-          </div>
 
           {/*the questions that the user answered*/}
-          <div className="my-answered-questions">
-          <h3>My Answered Questions</h3>
-          {Object.keys(this.props.currentUserAnswers).map(
-            userA => userA !== question.id && <Unanswered question={question} />
-          )}
+
+          {view === "A" && (
+            <div className="my-answered-questions">
+              {Object.keys(this.props.currentUserAnswers).map(
+                userA =>
+                  userA !== question.id && <Unanswered question={question} />
+              )}
             </div>
+          )}
+
+          {view === "U" && (
+            <div className="my-answered-questions">
+              {Object.keys(this.props.currentUserAnswers).map(
+                userA =>
+                  userA === question.id && <Answered question={question} />
+              )}
+            </div>
+          )}
 
           {/*unanswered questions*/}
-          <div className="my-answered-questions">
-          <h3>My Unnswered Questions</h3>
-          {Object.keys(this.props.currentUserAnswers).map(
-            userA => userA === question.id && <Answered question={question} />
-          )}  </div>
         </div>
       </div>
     );
