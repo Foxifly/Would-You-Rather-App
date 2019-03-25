@@ -25,7 +25,7 @@ class QuestionSorter extends Component {
             <div className="my-questions">
               {currentUserQuestions.map(
                 userQ =>
-                  userQ === question.id && <Question question={question} category="M" />
+                  userQ === question.id && <Question key={question.id} question={question} category="M" />
               )}
             </div>
           )}
@@ -36,7 +36,7 @@ class QuestionSorter extends Component {
             <div className="my-answered-questions">
               {Object.keys(this.props.currentUserAnswers).map(
                 userA =>
-                  userA !== question.id && <Question question={question} category="A"  />
+                  userA !== question.id && <Question key={question.id} question={question} category="A"  />
               )}
             </div>
           )}
@@ -45,7 +45,7 @@ class QuestionSorter extends Component {
             <div className="my-answered-questions">
               {Object.keys(this.props.currentUserAnswers).map(
                 userA =>
-                  userA === question.id && <Question question={question} category="U"  />
+                  userA === question.id && <Question key={question.id} question={question} category="U"  />
               )}
             </div>
           )}

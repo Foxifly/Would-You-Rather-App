@@ -12,7 +12,7 @@ class Dashboard extends Component {
         <Nav navItems={true} />
         <p>Welcome {this.props.authedUser}</p>
 
-        {questions.map((question) => <QuestionSorter id={question} user={users}/>  )
+        {questions.map((question) => <QuestionSorter key={question} id={question} user={users}/>  )
       }
 
       </div>
