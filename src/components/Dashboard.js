@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import Nav from "./Nav";
-import Question from "./Question"
+import QuestionSorter from "./QuestionSorter"
 import {connect} from "react-redux"
 class Dashboard extends Component {
   render() {
 
-    const {authedUser, questions} = this.props;
+    const {users, questions} = this.props;
 
     return (
       <div>
@@ -13,7 +13,7 @@ class Dashboard extends Component {
         <p>Welcome {this.props.authedUser}</p>
         <h2>Would you rather...</h2>
         <ul>
-        {questions && questions.map((question) => { console.log(question); return question &&  <li key={question}><Question id={question}/></li>}   )
+        {questions && questions.map((question) =>  <li key={question}><QuestionSorter id={question} user={users}/></li>   )
       }
         </ul>
       </div>
@@ -22,7 +22,7 @@ class Dashboard extends Component {
 }
 
 function mapStateToProps({ authedUser, users, questions }) {
-  console.log(authedUser)
+  console.log(users)
   return {
     questions: Object.keys(questions),
     authedUser
