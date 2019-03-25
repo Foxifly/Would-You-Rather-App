@@ -7,7 +7,7 @@ import "../style/app.css";
 
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
-import Dashboard from "./Dashboard"
+import Dashboard from "./Dashboard";
 
 class App extends Component {
   componentDidMount() {
@@ -21,8 +21,8 @@ class App extends Component {
           <div className="container">
             {this.props.loading === true ? null : (
               <div>
-              <Route path="/" exact component={LoginScreen} />
-              <Route path="/dashboard" exact component={Dashboard} />
+                <Route path="/" exact component={LoginScreen} />
+                <Route path="/dashboard" exact component={Dashboard} />
               </div>
             )}
           </div>
@@ -32,10 +32,9 @@ class App extends Component {
   }
 }
 
-
 function mapStateToProps({ authedUser }) {
   return {
-    loading: authedUser === null 
+    loading: authedUser === null
   };
 }
 
