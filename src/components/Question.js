@@ -1,12 +1,29 @@
-import React, {Component} from 'react';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { formatDate } from "../utils/helper";
+
 class Question extends Component {
   render() {
+    const { question } = this.props;
+    const { id, author, timestamp, optionOne, optionTwo } = question;
     return (
-      <div>I am a question!</div>
-
-    )
+      <div className="question">
+        <div className="question-container">
+          <p className="option-one">{optionOne.text}</p>
+          <p className="option-two">{optionTwo.text}</p>
+        </div>
+      </div>
+    );
   }
 }
 
+function mapStateToProps({ authedUser, users, questions }, { id }) {
+  const question = questions[id];
 
-export default Question;
+  return {
+    authedUser,
+    question
+  };
+}
+
+export default connect(mapStateToProps)(Question);

@@ -11,9 +11,9 @@ class Dashboard extends Component {
       <div>
         <Nav navItems={true} />
         <p>Welcome {this.props.authedUser}</p>
-        <Question/>
+        <h2>Would you rather...</h2>
         <ul>
-        {questions && questions.map((question) =>  <li key={question}><Question id={question}/></li>   )
+        {questions && questions.map((question) => { console.log(question); return question &&  <li key={question}><Question id={question}/></li>}   )
       }
         </ul>
       </div>
@@ -22,7 +22,7 @@ class Dashboard extends Component {
 }
 
 function mapStateToProps({ authedUser, users, questions }) {
-  console.log(Object.keys(questions))
+  console.log(authedUser)
   return {
     questions: Object.keys(questions),
     authedUser

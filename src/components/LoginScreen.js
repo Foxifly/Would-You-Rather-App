@@ -15,7 +15,6 @@ class LoginScreen extends Component {
   handleSubmit = e => {
     const { id } = this.state;
     const { dispatch } = this.props;
-    console.log("The login id auth: ", id);
     e.preventDefault();
     if (id) {
       dispatch(handleSwitchUser(id));
@@ -44,7 +43,6 @@ class LoginScreen extends Component {
   };
 
   render() {
-    console.log(this.state.toHome);
     if (this.state.toHome) {
       return <Redirect to="/dashboard" />;
     }
