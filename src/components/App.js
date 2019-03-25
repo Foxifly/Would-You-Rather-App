@@ -22,7 +22,10 @@ class App extends Component {
             {this.props.loading === true ? null : (
               <div>
                 <Route path="/" exact component={LoginScreen} />
-                <Route path="/dashboard" exact component={Dashboard} />
+                <Route path="/dashboard" exact component={Dashboard} page="U" />
+                <Route path="/dashboard/unanswered" exact component={() => <Dashboard page="U"/>} />
+                <Route path="/dashboard/answered" exact component={() => <Dashboard page="A"/>}/>
+                <Route path="/dashboard/my-questions" exact component={() => <Dashboard page="U"/>} />
               </div>
             )}
           </div>

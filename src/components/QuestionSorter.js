@@ -4,9 +4,15 @@ import Question from "./Question";
 
 class QuestionSorter extends Component {
   state = {
-    view: "U" //M = My questions / A = Answered / U = Unanswered - default M
+    view: "" //M = My questions / A = Answered / U = Unanswered - default M
   };
+  componentDidMount() {
+    this.setState({
+      view: this.props.page
+    })
+  }
   render() {
+    console.log("page props: ", this.props.page)
     const {
       question,
       currentUser,
@@ -15,6 +21,7 @@ class QuestionSorter extends Component {
     } = this.props;
 
     const { view } = this.state;
+
 
     return (
       <div className="question">
