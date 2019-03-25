@@ -1,12 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import UserQuestions from "./UserQuestions";
-import Answered from "./Answered";
-import Unanswered from "./Unanswered";
+import Question from "./Question";
 
 class QuestionSorter extends Component {
   state = {
-    view: "M" //M = My questions / A = Answered / U = Unanswered - default M
+    view: "U" //M = My questions / A = Answered / U = Unanswered - default M
   };
   render() {
     const {
@@ -27,7 +25,7 @@ class QuestionSorter extends Component {
             <div className="my-questions">
               {currentUserQuestions.map(
                 userQ =>
-                  userQ === question.id && <UserQuestions question={question} />
+                  userQ === question.id && <Question question={question} category="M" />
               )}
             </div>
           )}
@@ -38,7 +36,7 @@ class QuestionSorter extends Component {
             <div className="my-answered-questions">
               {Object.keys(this.props.currentUserAnswers).map(
                 userA =>
-                  userA !== question.id && <Unanswered question={question} />
+                  userA !== question.id && <Question question={question} category="A"  />
               )}
             </div>
           )}
@@ -47,7 +45,7 @@ class QuestionSorter extends Component {
             <div className="my-answered-questions">
               {Object.keys(this.props.currentUserAnswers).map(
                 userA =>
-                  userA === question.id && <Answered question={question} />
+                  userA === question.id && <Question question={question} category="U"  />
               )}
             </div>
           )}

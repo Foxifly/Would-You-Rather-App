@@ -11,7 +11,6 @@ class Dashboard extends Component {
       <div>
         <Nav navItems={true} />
         <p>Welcome {this.props.authedUser}</p>
-        <h2>Would you rather...</h2>
 
         {questions.map((question) => <QuestionSorter id={question} user={users}/>  )
       }
