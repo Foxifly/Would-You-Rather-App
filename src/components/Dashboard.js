@@ -13,7 +13,7 @@ class Dashboard extends Component {
         <p>Welcome {this.props.authedUser}</p>
         <h2>Would you rather...</h2>
         <ul>
-        {questions && questions.map((question) =>  <li key={question}><QuestionSorter id={question} user={users}/></li>   )
+        {questions && questions.map((question) =>  <li key={question}><QuestionSorter id={question} user={users}/> WOULD YOU RATHER </li>   )
       }
         </ul>
       </div>
