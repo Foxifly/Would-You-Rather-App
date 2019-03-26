@@ -1,32 +1,82 @@
 import React, { Component } from "react";
 import Nav from "./Nav";
-import QuestionSorter from "./QuestionSorter"
-import {connect} from "react-redux"
+import { connect } from "react-redux";
+import Question from "./Question";
 class Dashboard extends Component {
+  state = {
+    view: "" //M = My questions / A = Answered / U = Unanswered - default M
+  };
+  componentDidMount() {
+    this.setState({
+      view: this.props.page
+    });
+    console.log("page props: ", this.props.page);
+  }
   render() {
-
-    const {users, questions, page} = this.props;
-    console.log("page props: ", this.props.page)
+    const {
+      page,
+      currentUserQuestions,
+      unanswered,
+      answered,
+      myQuestions
+    } = this.props;
+    const { view } = this.state;
 
     return (
       <div>
         <Nav navItems={true} />
         <p>Welcome {this.props.authedUser}</p>
 
-        {questions.map((question) => <QuestionSorter page={page} key={question} id={question} user={users}/>  )
-      }
+        {view === "M" && (
+          <div className="my-questions">
+            {myQuestions.map(question => (
+            <Question key={question.id} question={question} category="M" />
+            ))}
+          </div>
+        )}
 
+        {view === "U" && (
+          <div className="my-questions">
+            {unanswered.map(question => (
+              <Question key={question.id} question={question} category="U" />
+            ))}
+          </div>
+        )}
+
+        {view === "A" && (
+          <div className="questions">
+            {answered.map(question => (
+              <Question key={question.id} question={question} category="A" />
+            ))}
+          </div>
+        )}
       </div>
     );
   }
 }
 
-function mapStateToProps({ authedUser, users, questions }, {page}) {
-  console.log(users)
+function mapStateToProps({ authedUser, users, questions }, { page }) {
+  const questionArray = Object.values(questions);
+  const currentUser = users[authedUser];
+  const currentUserQuestions = currentUser ? currentUser.questions : [];
+  const currentUserAnswers = currentUser ? Object.keys(currentUser.answers) : [];
+
+
   return {
-    questions: Object.keys(questions),
-    authedUser,
-    page
+    allQuestions: questions,
+    currentUser,
+    currentUserQuestions,
+    page,
+    myQuestions: questionArray.filter(question =>
+      currentUserQuestions.includes(question.id) ? question : null
+    ),
+    answered: questionArray.filter(question =>
+      currentUserAnswers.includes(question.id) ? question : null
+    ),
+    unanswered: questionArray.filter(question =>
+      currentUserAnswers.includes(question.id) ? null : question
+    )
   };
 }
+
 export default connect(mapStateToProps)(Dashboard);

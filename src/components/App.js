@@ -25,7 +25,7 @@ class App extends Component {
                 <Route path="/dashboard" exact component={Dashboard} page="U" />
                 <Route path="/dashboard/unanswered" exact component={() => <Dashboard page="U"/>} />
                 <Route path="/dashboard/answered" exact component={() => <Dashboard page="A"/>}/>
-                <Route path="/dashboard/my-questions" exact component={() => <Dashboard page="U"/>} />
+                <Route path="/dashboard/my-questions" exact component={() => <Dashboard page="M"/>} />
               </div>
             )}
           </div>
