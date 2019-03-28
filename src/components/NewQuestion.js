@@ -63,7 +63,7 @@ class NewQuestion extends Component {
             onChange={this.handleOptionOneChange}
             className="input-box"
           />
-          
+
           <input
             placeholder="Option Two"
             value={optionTwo}
@@ -82,7 +82,7 @@ class NewQuestion extends Component {
             className="button"
             type="submit"
             disabled={optionOne === "" && optionTwo === "" && category === ""}
-          />
+          >
             Submit
           </button>
         </form>
