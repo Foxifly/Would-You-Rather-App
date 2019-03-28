@@ -144,11 +144,12 @@ export function _getQuestions() {
   });
 }
 
-function formatQuestion({ optionOneText, optionTwoText, author }) {
+function formatQuestion({ optionOneText, optionTwoText, author, category}) {
   return {
     id: generateUID(),
     timestamp: Date.now(),
     author,
+    category,
     optionOne: {
       votes: [],
       text: optionOneText

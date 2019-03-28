@@ -7,10 +7,11 @@ export default function users(state = {}, action) {
         ...state,
         ...action.questions
       };
-    case ADD_QUESTION:
-      return {
-        ...state
-      };
+      case ADD_QUESTION:
+          return {
+              ...state,
+              [action.question.id]: action.question
+          }
     //PLACEHOLDER
     default:
       return state;

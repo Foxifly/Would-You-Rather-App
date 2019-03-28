@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import Nav from "./Nav";
 import { connect } from "react-redux";
 import Question from "./Question";
+import NewQuestion from "./NewQuestion"
+
 class Dashboard extends Component {
   state = {
     view: "" //M = My questions / A = Answered / U = Unanswered - default M
@@ -50,6 +52,11 @@ class Dashboard extends Component {
             ))}
           </div>
         )}
+
+
+                {view === "N" && (
+                  <NewQuestion/>
+                )}
       </div>
     );
   }
