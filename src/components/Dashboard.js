@@ -75,7 +75,6 @@ function mapStateToProps({ authedUser, users, questions }, { page }) {
     currentUserQuestions,
     page,
     myQuestions: questionArray.filter(question =>
-    // console.log(question.author, currentUser.id)
       question.author === currentUser.id ? question : null
     ),
     answered: questionArray.filter(question =>

@@ -5,31 +5,49 @@ import { Redirect } from "react-router-dom";
 
 class NewQuestion extends Component {
   state = {
-    text: ""
+    optionOne: "",
+    optionTwo: "",
+    category: ""
   };
-  handleChange = e => {
-    const text = e.target.value;
+  handleOptionOneChange = e => {
+    const optionOne = e.target.value;
 
     this.setState(() => ({
-      text
+      optionOne
+    }));
+  };
+  handleOptionTwoChange = e => {
+    const optionTwo = e.target.value;
+
+    this.setState(() => ({
+      optionTwo
+    }));
+  };
+  handleCategoryChange = e => {
+    const category = e.target.value;
+
+    this.setState(() => ({
+      category
     }));
   };
   handleSubmit = e => {
     e.preventDefault();
 
-    const { text } = this.state;
+    const { optionOne, optionTwo, category } = this.state;
     const { dispatch } = this.props;
 
-    this.props.dispatch(handleAddQuestion("hello", text, "hey"));
-    console.log(this.props.questions)
+    this.props.dispatch(handleAddQuestion(optionOne, optionTwo, category));
+    console.log(this.props.questions);
 
     this.setState(() => ({
-      text: "",
+      optionOne: "",
+      optionTwo: "",
+      category: "",
       toHome: true
     }));
   };
   render() {
-    const { text, toHome } = this.state;
+    const { optionOne, optionTwo, category, toHome } = this.state;
 
     if (toHome) {
       return <Redirect to="/dashboard/my-questions" />;
@@ -39,15 +57,32 @@ class NewQuestion extends Component {
         <h3 className="center">Compose New</h3>
 
         <form className="new-question" onSubmit={this.handleSubmit}>
-          <textarea
-            placeholder="What's up?"
-            value={text}
-            onChange={this.handleChange}
-            className="textarea"
-            maxLength={280}
+          <input
+            placeholder="Option One"
+            value={optionOne}
+            onChange={this.handleOptionOneChange}
+            className="input-box"
+          />
+          
+          <input
+            placeholder="Option Two"
+            value={optionTwo}
+            onChange={this.handleOptionTwoChange}
+            className="input-box"
           />
 
-          <button className="button" type="submit" disabled={text === ""}>
+          <input
+            placeholder="Category"
+            value={category}
+            onChange={this.handleCategoryChange}
+            className="input-box"
+          />
+
+          <button
+            className="button"
+            type="submit"
+            disabled={optionOne === "" && optionTwo === "" && category === ""}
+          />
             Submit
           </button>
         </form>
