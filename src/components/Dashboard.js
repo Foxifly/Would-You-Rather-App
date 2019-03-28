@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Nav from "./Nav";
 import { connect } from "react-redux";
 import Question from "./Question";
-import NewQuestion from "./NewQuestion"
+import NewQuestion from "./NewQuestion";
 
 class Dashboard extends Component {
   state = {
@@ -32,7 +32,7 @@ class Dashboard extends Component {
         {view === "M" && (
           <div className="my-questions">
             {myQuestions.map(question => (
-            <Question key={question.id} question={question} category="M" />
+              <Question key={question.id} question={question} category="M" />
             ))}
           </div>
         )}
@@ -53,10 +53,7 @@ class Dashboard extends Component {
           </div>
         )}
 
-
-                {view === "N" && (
-                  <NewQuestion/>
-                )}
+        {view === "N" && <NewQuestion />}
       </div>
     );
   }
@@ -66,8 +63,9 @@ function mapStateToProps({ authedUser, users, questions }, { page }) {
   const questionArray = Object.values(questions);
   const currentUser = users[authedUser];
   const currentUserQuestions = currentUser ? currentUser.questions : [];
-  const currentUserAnswers = currentUser ? Object.keys(currentUser.answers) : [];
-
+  const currentUserAnswers = currentUser
+    ? Object.keys(currentUser.answers)
+    : [];
 
   return {
     allQuestions: questions,
