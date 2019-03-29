@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import LoadingBar from "react-redux-loading";
 import LoginScreen from "./LoginScreen";
 import "../style/app.css";
+import QuestionZoom from "./QuestionZoom"
 
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
@@ -27,6 +28,7 @@ class App extends Component {
                 <Route path="/dashboard/answered" exact component={() => <Dashboard page="A"/>}/>
                 <Route path="/dashboard/my-questions" exact component={() => <Dashboard page="M"/>} />
                 <Route path="/dashboard/new" exact component={() => <Dashboard page="N"/>} />
+                <Route path='/question/' component={QuestionZoom} />
               </div>
             )}
           </div>
@@ -36,9 +38,10 @@ class App extends Component {
   }
 }
 
-function mapStateToProps({ authedUser }) {
+function mapStateToProps({ questions, authedUser }) {
   return {
-    loading: authedUser === null
+    loading: authedUser === null,
+    questions
   };
 }
 
