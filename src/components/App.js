@@ -6,6 +6,7 @@ import LoginScreen from "./LoginScreen";
 import "../style/app.css";
 import QuestionZoom from "./QuestionZoom"
 import PageNotFound from "./PageNotFound"
+import "../style/profile.css"
 
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 

@@ -19,13 +19,14 @@ class Dashboard extends Component {
     console.log("page props: ", this.props.page);
   }
   render() {
-    const { unanswered, answered, myQuestions } = this.props;
+    const { unanswered, answered, myQuestions, currentUser } = this.props;
     const { view } = this.state;
 
     return (
       <div>
         <Nav navItems={true} />
-        <p>Welcome {this.props.authedUser}</p>
+        <p>Welcome {currentUser.name}</p>
+
 
         {view === "M" && (
           <div className="my-questions">

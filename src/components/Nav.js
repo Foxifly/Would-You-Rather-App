@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
-import "../style/nav.css"
+import "../style/nav.css";
+import {connect} from 'react-redux'
 
 class Nav extends Component {
   state = {
@@ -9,7 +10,7 @@ class Nav extends Component {
 
   componentDidMount() {
     const { navItems } = this.props;
-    console.log(navItems);
+    console.log(this.props);
     if (navItems) {
       //render regular navbar
       this.setState({ isLogin: false });
@@ -20,6 +21,7 @@ class Nav extends Component {
   }
 
   render() {
+    const {currUser} = this.props;
     const { isLogin } = this.state;
     return (
       <div>
@@ -41,10 +43,6 @@ class Nav extends Component {
             <NavLink className="nav-item" to="/dashboard/answered" exact activeClassName="active">
               Answered Questions
             </NavLink>
-            
-            <NavLink className="nav-item" to="/dashboard/my-questions" exact activeClassName="active">
-              My Questions
-            </NavLink>
 
             <NavLink className="nav-item" to="/dashboard/new" exact activeClassName="active">
               New Question
@@ -54,6 +52,9 @@ class Nav extends Component {
               Logout
             </NavLink>
             </div>
+            <NavLink className="avatar-container" to="/dashboard/my-questions" exact activeClassName="ignore-active">
+              <img className="avatar" src={currUser.avatarURL}/>
+            </NavLink>
 
           </nav>
         )}
@@ -61,4 +62,11 @@ class Nav extends Component {
     );
   }
 }
-export default Nav;
+function mapStateToProps({authedUser, users}) {
+  console.log(authedUser, users);
+  const currUser = users[authedUser];
+  return {
+    currUser
+  }
+}
+export default connect(mapStateToProps)(Nav);
