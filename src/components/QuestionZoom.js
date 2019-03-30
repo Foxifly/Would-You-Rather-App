@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import Nav from "./Nav"
 
 class Question extends Component {
   state = {
@@ -24,6 +25,7 @@ class Question extends Component {
 
     return (
       <div>
+      <Nav navItems={true} />
         {currQuestion && (
           <div>
             <h2>Would You Rather...</h2>
