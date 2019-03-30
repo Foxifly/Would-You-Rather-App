@@ -19,13 +19,7 @@ class Dashboard extends Component {
     console.log("page props: ", this.props.page);
   }
   render() {
-    const {
-      page,
-      currentUserQuestions,
-      unanswered,
-      answered,
-      myQuestions
-    } = this.props;
+    const { unanswered, answered, myQuestions } = this.props;
     const { view } = this.state;
 
     return (

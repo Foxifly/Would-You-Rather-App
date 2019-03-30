@@ -36,7 +36,7 @@ class NewQuestion extends Component {
     const { optionOne, optionTwo, category } = this.state;
     const { dispatch } = this.props;
 
-    this.props.dispatch(handleAddQuestion(optionOne, optionTwo, category));
+    dispatch(handleAddQuestion(optionOne, optionTwo, category));
     console.log(this.props.questions);
 
     this.setState(() => ({
