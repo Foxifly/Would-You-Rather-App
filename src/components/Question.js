@@ -3,6 +3,7 @@ import { handleAddQuestion } from "../actions/questions";
 import { connect } from "react-redux";
 import QuestionZoom from "./QuestionZoom";
 import { Link, withRouter } from "react-router-dom";
+import "../style/questionlist.css";
 
 class Question extends Component {
   state = {
@@ -15,9 +16,9 @@ class Question extends Component {
 
     return (
       <div className="question-container">
-        <h1>{question.category}</h1>
+        <h2 className="category">{question.category}</h2>
         {category === "M" && (
-          <Link
+          <Link className="question-zoom-button"
             to={{
               pathname: `/question/${question.id}`,
               state: {
@@ -29,7 +30,7 @@ class Question extends Component {
           </Link>
         )}
         {category === "U" && (
-          <Link
+          <Link className="question-zoom-button"
             to={{
               pathname: `/question/${question.id}`,
               state: {
@@ -41,7 +42,7 @@ class Question extends Component {
           </Link>
         )}
         {category === "A" && (
-          <Link
+          <Link className="question-zoom-button"
             to={{
               pathname: `/question/${question.id}`,
               state: {
