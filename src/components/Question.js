@@ -17,21 +17,38 @@ class Question extends Component {
       <div className="question-container">
         <h1>{question.category}</h1>
         {category === "M" && (
-
-          <Link to={{
-  pathname: `/question/${question.id}`,
-  state: {
-    currQuestion: question
-  }
-}}>Tyler McGinnis</Link>
+          <Link
+            to={{
+              pathname: `/question/${question.id}`,
+              state: {
+                currQuestion: question
+              }
+            }}
+          >
+            View Poll
+          </Link>
         )}
         {category === "U" && (
-          <Link to={`/question/${question.id}`} className="question" propsy={question}>
+          <Link
+            to={{
+              pathname: `/question/${question.id}`,
+              state: {
+                currQuestion: question
+              }
+            }}
+          >
             View Poll
           </Link>
         )}
         {category === "A" && (
-          <Link to={`/question/${question.id}`} className="question" propsy={question}>
+          <Link
+            to={{
+              pathname: `/question/${question.id}`,
+              state: {
+                currQuestion: question
+              }
+            }}
+          >
             View Poll
           </Link>
         )}
