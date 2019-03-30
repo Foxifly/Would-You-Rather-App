@@ -5,8 +5,9 @@ import LoadingBar from "react-redux-loading";
 import LoginScreen from "./LoginScreen";
 import "../style/app.css";
 import QuestionZoom from "./QuestionZoom"
+import PageNotFound from "./PageNotFound"
 
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 import Dashboard from "./Dashboard";
 
@@ -22,6 +23,8 @@ class App extends Component {
           <div className="container">
             {this.props.loading === true ? null : (
               <div>
+              <Switch>
+
                 <Route path="/" exact component={LoginScreen} />
                 <Route path="/dashboard" exact component={Dashboard} page="U" />
                 <Route path="/dashboard/unanswered" exact component={() => <Dashboard page="U"/>} />
@@ -29,7 +32,10 @@ class App extends Component {
                 <Route path="/dashboard/my-questions" exact component={() => <Dashboard page="M"/>} />
                 <Route path="/dashboard/new" exact component={() => <Dashboard page="N"/>} />
                 <Route path='/question/' component={QuestionZoom} />
-              </div>
+                <Route component={PageNotFound} />
+
+              </Switch>  </div>
+
             )}
           </div>
         </Fragment>

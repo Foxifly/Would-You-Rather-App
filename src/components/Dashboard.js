@@ -9,9 +9,13 @@ class Dashboard extends Component {
     view: "" //M = My questions / A = Answered / U = Unanswered - default M
   };
   componentDidMount() {
-    this.setState({
-      view: this.props.page
-    });
+    this.props.page
+      ? this.setState({
+          view: this.props.page
+        })
+      : this.setState({
+          view: "U"
+        });
     console.log("page props: ", this.props.page);
   }
   render() {
@@ -60,7 +64,9 @@ class Dashboard extends Component {
 }
 
 function mapStateToProps({ authedUser, users, questions }, { page }) {
-  const questionArray = Object.values(questions).sort((a,b) => b.timestamp - a.timestamp);
+  const questionArray = Object.values(questions).sort(
+    (a, b) => b.timestamp - a.timestamp
+  );
   const currentUser = users[authedUser];
   const currentUserQuestions = currentUser ? currentUser.questions : [];
   const currentUserAnswers = currentUser
