@@ -31,9 +31,9 @@ class Question extends Component {
         <h2 className="category">{question.category}</h2>
 
       </div>
-      <h3>By {question.author}</h3>
-      <h3>{formatDate(question.timestamp)}</h3>
-      <h3>Votes {voteCount}</h3>
+      <h3 className="author">By {question.author}</h3>
+
+      <h3 className="votes">Votes {voteCount}</h3>
       <h3></h3>
         {category === "M" && (
           <div className="zoom-button-container">
@@ -77,6 +77,7 @@ class Question extends Component {
           </Link>
           </div>
         )}
+        <h3 className="date">{formatDate(question.timestamp)}</h3>
       </div>
     );
   }
