@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import Nav from "./Nav";
+import LeaderboardProfile from "./LeaderboardProfile"
 
 class Leaderboard extends Component {
   render() {
@@ -8,7 +9,10 @@ class Leaderboard extends Component {
     return (
       <div>
         <Nav navItems={true} />
-        {leaderboard.map((user) => <h1>{user.name} | {Object.keys(user.answers).length} | { user.questions.length}</h1>)}
+        <h1 className="header">Leaderboard</h1>
+        {leaderboard.map((user) =>
+          <LeaderboardProfile user={user}/>
+        )}
       </div>
     );
   }

@@ -1,0 +1,117 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans|Open+Sans+Condensed:300');
+
+.leaderboard-container {
+  width: 100%;
+}
+
+.leaderboard-card {
+  border-radius: 15px;
+  width: 40%;
+  background-color: white;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  grid-template-areas:
+    "avatar name name"
+    "avatar stats1 score"
+    "logout stats2 score";
+  padding: 25px;
+  border: 3px solid #343B3E;
+  box-shadow: 2px 3px #adb0b1;
+}
+
+.leaderboard-avatar-container {
+  grid-area: avatar;
+}
+
+.leaderboard-name-container {
+  grid-area: name;
+}
+
+.leaderboard-stats-container {
+  grid-area: stats;
+}
+
+.leaderboard-stats-container1 {
+  grid-area: stats1;
+}
+
+.leaderboard-stats-container2 {
+  grid-area: stats2;
+}
+
+.leaderboard-score-container {
+  grid-area: score;
+  justify-self: center;
+}
+
+.leaderboard-log-out {
+  background-color: #477282;
+  padding: 10px 20px;
+  width: 100%;
+  color: white;
+  margin: 10px auto;
+  border-radius: 5px;
+  transition: ease 0.4s;
+  text-decoration: none;
+  font-size: 18px;
+  color: white;
+  font-family: 'Muli', sans-serif;
+}
+
+.log-out:hover {
+  background-color: #59808e;
+  cursor: pointer;
+}
+
+.leaderboard-avatar {
+  height: 100px;
+  width: 100px;
+  border-radius: 50px;
+}
+
+.leaderboard-name {
+  font-size: 22px;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.leaderboard-stats {
+  font-size: 16px;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.leaderboard-header {
+  font-size: 32px !important;
+  text-transform: uppercase;
+  font-weight: bold;
+  color: black;
+
+}
+
+.leaderboard-score-container {
+  background-color: #477282;
+  border-radius: 10px;
+  width: 100px;
+  height:100px;
+}
+
+.leaderboard-score-header {
+    text-align: center;
+  background-color: #343b3e;
+  color: white;
+  padding: 10px;
+  margin: 0;
+  border-radius: 5px 5px 0 0;
+  font-family: 'Muli', sans-serif;
+  text-transform: uppercase;
+}
+
+.leaderboard-score {
+  text-align: center;
+  font-size: 32px;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: bolder;
+    margin: 0 auto;
+    color: white;
+    padding-top: 7px;
+}
