@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { handleAddQuestion } from "../actions/questions";
+import { handleAddQuestion } from "../actions/shared";
 import { Redirect } from "react-router-dom";
 import '../style/newquestion.css'
 
@@ -51,7 +51,7 @@ class NewQuestion extends Component {
     const { optionOne, optionTwo, category, toHome } = this.state;
 
     if (toHome) {
-      return <Redirect to="/dashboard/my-questions" />;
+      return <Redirect to="/unanswered" />;
     }
     return (
       <div>
