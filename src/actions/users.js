@@ -23,6 +23,5 @@ export function saveUserAnswer(authedUser, qid, answer, category) {
     authedUser,
     qid,
     answer,
-    category
   }
 }

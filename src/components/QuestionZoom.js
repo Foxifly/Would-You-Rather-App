@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import Nav from "./Nav"
 import "../style/question.css"
+import {handleAddAnswer} from "../actions/shared"
 
 class Question extends Component {
   state = {
@@ -15,9 +16,11 @@ class Question extends Component {
     });
   };
   handleSubmit = e => {
+    const { currQuestion } = this.props.location.state;
+    const {currentUser} = this.props;
+    const { option } = this.state;
     e.preventDefault();
-
-    //Todo: update the store with the users's choice
+    this.props.dispatch(handleAddAnswer(currentUser, currQuestion.id, option ))
   };
   render() {
     const { currQuestion } = this.props.location.state;
@@ -64,4 +67,11 @@ class Question extends Component {
   }
 }
 
-export default connect()(Question);
+function mapStateToProps({authedUser, users}) {
+  const currentUser = users[authedUser]
+  return {
+    currentUser
+  }
+}
+
+export default connect(mapStateToProps)(Question);

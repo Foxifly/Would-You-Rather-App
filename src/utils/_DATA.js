@@ -203,16 +203,18 @@ export function _saveQuestion(question) {
           questions: users[authedUser].questions.concat([formattedQuestion.id])
         }
       };
-      console.log(users);
-      console.log("formatted question ", formattedQuestion)
-
       res(formattedQuestion);
     }, 1000);
   });
 }
 
-export function _saveQuestionAnswer({ authedUser, qid, answer, category }) {
+export function _saveQuestionAnswer({ authedUser, qid, answer }) {
+  console.log("GREETINGS")
+  console.log("authedUser", authedUser)
+  console.log("qid ", qid)
+  console.log("answer", answer)
   return new Promise((res, rej) => {
+
     setTimeout(() => {
       users = {
         ...users,
@@ -232,8 +234,7 @@ export function _saveQuestionAnswer({ authedUser, qid, answer, category }) {
           [answer]: {
             ...questions[qid][answer],
             votes: questions[qid][answer].votes.concat([authedUser])
-          }, 
-          ...questions[category]
+          }
         }
       };
 

@@ -3,7 +3,7 @@ import { receiveQuestions, addQuestion, saveAnswer } from "./questions";
 import { receiveUsers, addUserQuestion, saveUserAnswer } from "../actions/users";
 import { setAuthedUser } from "../actions/authUser";
 import { showLoading, hideLoading } from "react-redux-loading";
-import { saveQuestion } from "../utils/api";
+import { saveQuestion, saveQuestionAnswer } from "../utils/api";
 
 const AUTHED_ID = "tylermcginnis";
 
@@ -39,18 +39,17 @@ export function handleAddQuestion(optionOneText, optionTwoText, category) {
   };
 }
 
-export function handleAddAnswer(authedUser, qid, answer, category) {
+export function handleAddAnswer(authedUser, qid, answer) {
   return (dispatch, getState) => {
     const { authedUser } = getState();
     dispatch(showLoading());
-    return saveAnswer({
+    return saveQuestionAnswer({
       authedUser,
       qid,
-      answer,
-      category
+      answer
     })
       .then(question => {
-        dispatch(saveAnswer(authedUser, qid, answer, category));
+        dispatch(saveAnswer(authedUser, qid, answer));
         dispatch(saveUserAnswer(authedUser, qid, answer));
       })
       .then(() => {
