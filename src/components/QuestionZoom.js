@@ -17,14 +17,13 @@ class Question extends Component {
     });
   };
   handleSubmit = e => {
-    const { currQuestion } = this.props.location.state;
-    const { currentUser } = this.props;
+    const { currentUser, question } = this.props;
     const { option, successful } = this.state;
     e.preventDefault();
-    if ((currentUser, currQuestion, option)) {
+    if ((currentUser, question, option)) {
       this.setState({ successful: true });
       this.props.dispatch(
-        handleAddAnswer(currentUser, currQuestion.id, option)
+        handleAddAnswer(currentUser, question.id, option)
       );
     } else {
       this.setState({ successful: false });
@@ -32,7 +31,7 @@ class Question extends Component {
   };
   render() {
     const { currQuestion } = this.props.location.state;
-    const {isAnswered, optionTwoPercent, optionOnePercent} = this.props;
+    const {isAnswered, question,  optionTwoPercent, optionOnePercent} = this.props;
     const { option } = this.state;
 
 
@@ -48,7 +47,7 @@ class Question extends Component {
             </div>
 
             <div className="answer-holder">
-              <p className="option">{currQuestion.optionOne.text}</p>
+              <p className="option">{question.optionOne.text}</p>
               <div className="percent-outline">
                 <div
                   style={{
@@ -63,7 +62,7 @@ class Question extends Component {
                 </div>
               </div>
 
-              <p className="option">{currQuestion.optionTwo.text}</p>
+              <p className="option">{question.optionTwo.text}</p>
               <div className="percent-outline">
                 <div
                   className="percent-container"
@@ -81,7 +80,7 @@ class Question extends Component {
           </div>
         )}
 
-        {!isAnswered && currQuestion && (
+        {!isAnswered && question && (
           <div className="results-container">
             <div className="WYR-header-container">
               <h2 className="WYR-header">Would You Rather...</h2>
@@ -96,7 +95,7 @@ class Question extends Component {
                     value="optionOne"
                     checked={option === "optionOne"}
                   />
-                  {currQuestion.optionOne.text}
+                  {question.optionOne.text}
                 </label>
               </div>
 
@@ -108,7 +107,7 @@ class Question extends Component {
                     value="optionTwo"
                     checked={option === "optionTwo"}
                   />
-                  {currQuestion.optionTwo.text}
+                  {question.optionTwo.text}
                 </label>
               </div>
 
@@ -128,9 +127,11 @@ class Question extends Component {
   }
 }
 
-function mapStateToProps({ authedUser, users }, {location}) {
+function mapStateToProps({ authedUser, users, questions}, {location}) {
+
   const currQuestion = location.state.currQuestion;
-  console.log("currQuestion", currQuestion)
+  const thisQuestion = questions[currQuestion.id]
+
 
   const currentUser = users[authedUser];
   const currentUserAnswers = currentUser
@@ -138,20 +139,21 @@ function mapStateToProps({ authedUser, users }, {location}) {
     : [];
 
     const optionOnePercent = Math.round(
-      (currQuestion.optionOne.votes.length /
-        (currQuestion.optionOne.votes.length +
-          currQuestion.optionTwo.votes.length)) *
+      (thisQuestion.optionOne.votes.length /
+        (thisQuestion.optionOne.votes.length +
+          thisQuestion.optionTwo.votes.length)) *
         100
     );
     const optionTwoPercent = Math.round(
-      (currQuestion.optionTwo.votes.length /
-        (currQuestion.optionOne.votes.length +
-          currQuestion.optionTwo.votes.length)) *
+      (thisQuestion.optionTwo.votes.length /
+        (thisQuestion.optionOne.votes.length +
+          thisQuestion.optionTwo.votes.length)) *
         100
     );
   return {
     currentUser,
-    isAnswered:  currentUserAnswers.includes(currQuestion.id) ? true : false,
+    question: thisQuestion,
+    isAnswered:  currentUserAnswers.includes(thisQuestion.id) ? true : false,
     optionOnePercent,
     optionTwoPercent
   };

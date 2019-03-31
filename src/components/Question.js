@@ -75,7 +75,6 @@ class Question extends Component {
 }
 
 function mapStateToProps({ questions }, { question }) {
-  console.log(question);
   const optionOneVoteCount = question.optionOne.votes.length;
   const optionTwoVoteCount = question.optionTwo.votes.length;
   return {
