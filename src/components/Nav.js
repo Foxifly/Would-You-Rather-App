@@ -36,15 +36,15 @@ class Nav extends Component {
           <nav className="navigation">
             <div className="logo">Wyr</div>
             <div className="nav-item-container">
-            <NavLink className="nav-item" to="/dashboard/unanswered" exact activeClassName="active">
+            <NavLink className="nav-item" to="/unanswered" exact activeClassName="active">
               Unanswered Questions
             </NavLink>
 
-            <NavLink className="nav-item" to="/dashboard/answered" exact activeClassName="active">
+            <NavLink className="nav-item" to="/answered" exact activeClassName="active">
               Answered Questions
             </NavLink>
 
-            <NavLink className="nav-item" to="/dashboard/new" exact activeClassName="active">
+            <NavLink className="nav-item" to="/new" exact activeClassName="active">
               New Question
             </NavLink>
 
@@ -52,7 +52,7 @@ class Nav extends Component {
               Logout
             </NavLink>
             </div>
-            <NavLink className="avatar-container" to="/dashboard/my-questions" exact activeClassName="ignore-active">
+            <NavLink className="avatar-container" to="/profile" exact activeClassName="ignore-active">
               <img className="avatar" src={currUser.avatarURL}/>
             </NavLink>
 

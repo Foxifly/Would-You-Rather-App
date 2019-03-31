@@ -1,0 +1,79 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans|Open+Sans+Condensed:300');
+
+.profile-container {
+  width: 100%;
+}
+
+.profile-card {
+  width: 50%;
+  background-color: white;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 2fr 2fr;
+  grid-template-areas:
+    "avatar name name"
+    "avatar stats1 stats2"
+    "logout logout logout";
+  padding: 25px;
+}
+
+.avatar-container {
+  grid-area: avatar;
+}
+
+.name-container {
+  grid-area: name;
+}
+
+.stats-container {
+  grid-area: stats;
+}
+
+.stats-container1 {
+  grid-area: stats1;
+}
+
+.stats-container2 {
+  grid-area: stats2;
+}
+
+.logout-container {
+  grid-area: logout;
+  justify-self: center;
+  align-self: center;
+}
+
+.log-out {
+  background-color: #477282;
+  padding: 10px 20px;
+  width: 100%;
+  color: white;
+  margin: 10px auto;
+  border-radius: 5px;
+  transition: ease 0.4s;
+  text-decoration: none;
+  font-size: 18px;
+  color: white;
+  font-family: 'Muli', sans-serif;
+}
+
+.log-out:hover {
+  background-color: #59808e;
+  cursor: pointer;
+}
+
+.profile-avatar {
+  height: 100px;
+  width: 100px;
+  border-radius: 50px;
+}
+
+.profile-name {
+  font-size: 22px;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.profile-stats {
+  font-size: 16px;
+  font-family: 'Open Sans', sans-serif;
+}

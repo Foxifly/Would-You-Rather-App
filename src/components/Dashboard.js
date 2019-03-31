@@ -3,6 +3,7 @@ import Nav from "./Nav";
 import { connect } from "react-redux";
 import Question from "./Question";
 import NewQuestion from "./NewQuestion";
+import Profile from "./Profile"
 
 class Dashboard extends Component {
   state = {
@@ -30,6 +31,7 @@ class Dashboard extends Component {
 
         {view === "M" && (
           <div className="my-questions">
+          <Profile/>
             {myQuestions.map(question => (
               <Question key={question.id} question={question} category="M" />
             ))}

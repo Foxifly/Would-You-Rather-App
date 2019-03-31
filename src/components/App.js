@@ -27,11 +27,10 @@ class App extends Component {
               <Switch>
 
                 <Route path="/" exact component={LoginScreen} />
-                <Route path="/dashboard" exact component={Dashboard} page="U" />
-                <Route path="/dashboard/unanswered" exact component={() => <Dashboard page="U"/>} />
-                <Route path="/dashboard/answered" exact component={() => <Dashboard page="A"/>}/>
-                <Route path="/dashboard/my-questions" exact component={() => <Dashboard page="M"/>} />
-                <Route path="/dashboard/new" exact component={() => <Dashboard page="N"/>} />
+                <Route path="/unanswered" exact component={() => <Dashboard page="U"/>} />
+                <Route path="/answered" exact component={() => <Dashboard page="A"/>}/>
+                <Route path="/profile" exact component={() => <Dashboard page="M"/>} />
+                <Route path="/new" exact component={() => <Dashboard page="N"/>} />
                 <Route path='/question/' component={QuestionZoom} />
                 <Route component={PageNotFound} />
 
