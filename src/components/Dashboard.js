@@ -38,18 +38,26 @@ class Dashboard extends Component {
         )}
 
         {view === "U" && (
+          <div>
+          <h1 className="header">Unanswered Questions</h1>
+
           <div className="my-questions">
+
             {unanswered.map(question => (
               <Question key={question.id} question={question} category="U" />
             ))}
           </div>
+          </div>
         )}
 
         {view === "A" && (
+          <div>
+          <h1 className="header">Answered Questions</h1>
           <div className="my-questions">
             {answered.map(question => (
               <Question key={question.id} question={question} category="A" />
             ))}
+          </div>
           </div>
         )}
 

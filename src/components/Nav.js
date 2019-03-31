@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 import "../style/nav.css";
-import {connect} from 'react-redux'
+import { connect } from "react-redux";
 
 class Nav extends Component {
   state = {
@@ -20,11 +20,10 @@ class Nav extends Component {
   }
 
   render() {
-    const {currUser} = this.props;
+    const { currUser } = this.props;
     const { isLogin } = this.state;
     return (
       <div>
-
         {isLogin && (
           <nav className="navigation">
             <div className="logo">Wyr</div>
@@ -35,44 +34,73 @@ class Nav extends Component {
           <nav className="navigation">
             <div className="logo">Wyr</div>
             <div className="nav-item-container">
-            <NavLink className="nav-item" to="/unanswered" exact activeClassName="active">
-              Unanswered Questions
-            </NavLink>
+              <NavLink
+                className="nav-item"
+                to="/unanswered"
+                exact
+                activeClassName="active"
+              >
+                Unanswered Questions
+              </NavLink>
 
-            <NavLink className="nav-item" to="/answered" exact activeClassName="active">
-              Answered Questions
-            </NavLink>
+              <NavLink
+                className="nav-item"
+                to="/answered"
+                exact
+                activeClassName="active"
+              >
+                Answered Questions
+              </NavLink>
 
-            <NavLink className="nav-item" to="/leaderboard" exact activeClassName="active">
-              Leaderboard
-            </NavLink>
+              <NavLink
+                className="nav-item"
+                to="/leaderboard"
+                exact
+                activeClassName="active"
+              >
+                Leaderboard
+              </NavLink>
 
-            <NavLink className="nav-item" to="/new" exact activeClassName="active">
-              New Question
-            </NavLink>
+              <NavLink
+                className="nav-item"
+                to="/new"
+                exact
+                activeClassName="active"
+              >
+                New Question
+              </NavLink>
 
-            <NavLink className="nav-item" to="/" exact activeClassName="active">
-              Logout
-            </NavLink>
+              <NavLink
+                className="nav-item"
+                to="/"
+                exact
+                activeClassName="active"
+              >
+                Logout
+              </NavLink>
             </div>
             <div className="avatar-container-nav">
-            <p className="user-greeting">Hello, {currUser.name}! </p>
-            <NavLink className="avatar-container" to="/profile" exact activeClassName="ignore-active">
-              <img className="avatar" src={currUser.avatarURL}/>
-            </NavLink>
+              <p className="user-greeting">Hello, {currUser.name}! </p>
+              <NavLink
+                className="avatar-container"
+                to="/profile"
+                exact
+                activeClassName="ignore-active"
+              >
+                <img className="avatar" src={currUser.avatarURL} />
+              </NavLink>
             </div>
-
           </nav>
         )}
       </div>
     );
   }
 }
-function mapStateToProps({authedUser, users}) {
+function mapStateToProps({ authedUser, users }) {
   console.log(authedUser, users);
   const currUser = users[authedUser];
   return {
     currUser
-  }
+  };
 }
 export default connect(mapStateToProps)(Nav);
