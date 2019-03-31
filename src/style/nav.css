@@ -2,25 +2,31 @@
 @import url('https://fonts.googleapis.com/css?family=Muli|Open+Sans+Condensed:300');
 
 .navigation {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  width: 100%;
   background-color: #1e282f;
   margin-bottom: 50px;
-  padding: 0 0 0px 15px;
+  justify-content: center;
+  grid-template-columns: 1fr 2fr 1fr;
+  grid-template-areas:
+    "logo navlink profile"
 }
 
 .logo {
+
   font-family: 'Luckiest Guy', cursive;
   color: white;
   font-size: 32px;
   padding-left: 40px;
   letter-spacing: 4px;
-  padding: 15px 0 0 0;
+  padding: 15px 0 0 15px;
+  grid-area: logo
 }
 
 .nav-item-container {
-  margin: 0 auto;
   padding: 15px 0;
+  grid-area: navlink;
+  justify-self: center;
 }
 
 .nav-item {
@@ -33,6 +39,12 @@
   transition: ease 0.2s;
 }
 
+.avatar-container-nav {
+  grid-area: profile;
+  justify-self: flex-end;
+
+}
+
 .nav-item:hover {
   background-color: #2d3d47;
 }
@@ -41,20 +53,21 @@
   background-color: #33444f;
 }
 
-
 .avatar {
   width: 40px;
   height: 40px;
-    border-radius: 100px;
+  border-radius: 100px;
+  float: left;
+  margin: 7px 0 0 10px;
 }
-
-.avatar-container {
-  padding-right: 10px;
-  padding-top: 7px;
-
-}
-
 
 .ignore-active {
-    background-color: #1e282f;
+  background-color: #1e282f;
+}
+
+.user-greeting {
+  color: white;
+  padding-right: 20px;
+  font-family: 'Open Sans', sans-serif;
+  float: left;
 }

@@ -55,9 +55,12 @@ class Nav extends Component {
               Logout
             </NavLink>
             </div>
+            <div className="avatar-container-nav">
+            <p className="user-greeting">Hello, {currUser.name}! </p>
             <NavLink className="avatar-container" to="/profile" exact activeClassName="ignore-active">
               <img className="avatar" src={currUser.avatarURL}/>
             </NavLink>
+            </div>
 
           </nav>
         )}
