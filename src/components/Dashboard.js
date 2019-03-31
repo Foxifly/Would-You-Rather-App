@@ -17,7 +17,6 @@ class Dashboard extends Component {
       : this.setState({
           view: "U"
         });
-    console.log("page props: ", this.props.page);
   }
   render() {
     const { unanswered, answered, myQuestions, currentUser } = this.props;

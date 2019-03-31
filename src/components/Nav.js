@@ -10,7 +10,6 @@ class Nav extends Component {
 
   componentDidMount() {
     const { navItems } = this.props;
-    console.log(this.props);
     if (navItems) {
       //render regular navbar
       this.setState({ isLogin: false });

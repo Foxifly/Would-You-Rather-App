@@ -9,7 +9,6 @@ class Question extends Component {
 
   handleClick = e => {
     const value = e.target.value;
-    console.log(value);
     this.setState({
       option: value
     });
