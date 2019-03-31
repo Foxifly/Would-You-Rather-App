@@ -44,6 +44,10 @@ class Nav extends Component {
               Answered Questions
             </NavLink>
 
+            <NavLink className="nav-item" to="/leaderboard" exact activeClassName="active">
+              Leaderboard
+            </NavLink>
+
             <NavLink className="nav-item" to="/new" exact activeClassName="active">
               New Question
             </NavLink>
