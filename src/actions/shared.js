@@ -1,10 +1,8 @@
 import { getInitialData } from "../utils/api";
-import { receiveQuestions } from "../actions/questions";
-import { receiveUsers } from "../actions/users";
+import { receiveQuestions, addQuestion, saveAnswer } from "./questions";
+import { receiveUsers, addUserQuestion, saveUserAnswer } from "../actions/users";
 import { setAuthedUser } from "../actions/authUser";
 import { showLoading, hideLoading } from "react-redux-loading";
-import { addUserQuestion } from "./users";
-import { addQuestion } from "./questions";
 import { saveQuestion } from "../utils/api";
 
 const AUTHED_ID = "tylermcginnis";
@@ -34,6 +32,26 @@ export function handleAddQuestion(optionOneText, optionTwoText, category) {
       .then(question => {
         dispatch(addQuestion(question));
         dispatch(addUserQuestion(question));
+      })
+      .then(() => {
+        dispatch(hideLoading());
+      });
+  };
+}
+
+export function handleAddAnswer(authedUser, qid, answer, category) {
+  return (dispatch, getState) => {
+    const { authedUser } = getState();
+    dispatch(showLoading());
+    return saveAnswer({
+      authedUser,
+      qid,
+      answer,
+      category
+    })
+      .then(question => {
+        dispatch(saveAnswer(authedUser, qid, answer, category));
+        dispatch(saveUserAnswer(authedUser, qid, answer));
       })
       .then(() => {
         dispatch(hideLoading());
