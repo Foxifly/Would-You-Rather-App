@@ -11,7 +11,7 @@ class Leaderboard extends Component {
         <Nav navItems={true} />
         <h1 className="header">Leaderboard</h1>
         {leaderboard.map((user) =>
-          <LeaderboardProfile user={user}/>
+          <LeaderboardProfile key={user.id} user={user}/>
         )}
       </div>
     );

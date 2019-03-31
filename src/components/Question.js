@@ -9,8 +9,6 @@ class Question extends Component {
     const {
       question,
       category,
-      optionTwoVoteCount,
-      optionOneVoteCount,
       voteCount
     } = this.props;
 
@@ -22,7 +20,6 @@ class Question extends Component {
         <h3 className="author">By {question.author}</h3>
 
         <h3 className="votes">Votes {voteCount}</h3>
-        <h3 />
         {category === "M" && (
           <div className="zoom-button-container">
             <Link
@@ -80,8 +77,6 @@ function mapStateToProps({ questions }, { question }) {
   return {
     questions,
     question,
-    optionOneVoteCount,
-    optionTwoVoteCount,
     voteCount: optionOneVoteCount + optionTwoVoteCount
   };
 }

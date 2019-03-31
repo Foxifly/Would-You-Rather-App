@@ -19,7 +19,7 @@ class Question extends Component {
   };
   handleSubmit = e => {
     const { currentUser, question } = this.props;
-    const { option, successful } = this.state;
+    const { option } = this.state;
     e.preventDefault();
     if ((currentUser, question, option)) {
       this.setState({ successful: true });
@@ -35,7 +35,7 @@ class Question extends Component {
       optionTwoPercent,
       optionOnePercent, isQuestion
     } = this.props;
-    const { option } = this.state;
+    const { option, successful } = this.state;
 
     return (
       <div>
@@ -118,7 +118,7 @@ class Question extends Component {
                 Submit
               </button>
             </form>
-            {this.state.successful === false && (
+            {successful === false && (
               <p className="error-text">
                 Please answer the question to continue!
               </p>

@@ -87,7 +87,7 @@ class Nav extends Component {
                 exact
                 activeClassName="ignore-active"
               >
-                <img className="avatar" src={currUser.avatarURL} />
+                <img alt={`${currUser.name}'s avatar'`} className="avatar" src={currUser.avatarURL} />
               </NavLink>
             </div>
           </nav>
