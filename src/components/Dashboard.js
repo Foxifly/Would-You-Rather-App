@@ -3,7 +3,8 @@ import Nav from "./Nav";
 import { connect } from "react-redux";
 import Question from "./Question";
 import NewQuestion from "./NewQuestion";
-import Profile from "./Profile"
+import Profile from "./Profile";
+import { Link, withRouter } from "react-router-dom";
 
 class Dashboard extends Component {
   state = {
@@ -26,10 +27,35 @@ class Dashboard extends Component {
       <div>
         <Nav navItems={true} />
 
+        {!currentUser && (
+          <div className="error-page">
+            <h1 className="header-404">Error</h1>
+            <div className="container-404">
+              <p className="sorry-not-sorry">
+                Sorry for the trouble, but you must log in to access this page!
+              </p>
+              <img
+                className="cow-error-img"
+                alt="sad cow"
+                src="https://farm6.staticflickr.com/5125/5242994366_63f85e7547_b.jpg"
+              />
+              <br />
 
-        {view === "M" && (
+              <Link
+                className="log-in"
+                to={{
+                  pathname: `/`
+                }}
+              >
+                Log In
+              </Link>
+            </div>
+          </div>
+        )}
+
+        {currentUser && view === "M" && (
           <div className="my-questions">
-          <Profile/>
+            <Profile />
 
             {myQuestions.map(question => (
               <Question key={question.id} question={question} category="M" />
@@ -37,61 +63,62 @@ class Dashboard extends Component {
           </div>
         )}
 
-        {view === "U" && (
+        {currentUser && view === "U" && (
           <div>
-          <h1 className="header">Unanswered Questions</h1>
+            <h1 className="header">Unanswered Questions</h1>
 
-          <div className="my-questions">
-
-            {unanswered.map(question => (
-              <Question key={question.id} question={question} category="U" />
-            ))}
-          </div>
+            <div className="my-questions">
+              {unanswered.map(question => (
+                <Question key={question.id} question={question} category="U" />
+              ))}
+            </div>
           </div>
         )}
 
-        {view === "A" && (
+        {currentUser && view === "A" && (
           <div>
-          <h1 className="header">Answered Questions</h1>
-          <div className="my-questions">
-            {answered.map(question => (
-              <Question key={question.id} question={question} category="A" />
-            ))}
-          </div>
+            <h1 className="header">Answered Questions</h1>
+            <div className="my-questions">
+              {answered.map(question => (
+                <Question key={question.id} question={question} category="A" />
+              ))}
+            </div>
           </div>
         )}
 
-        {view === "N" && <NewQuestion />}
+        {currentUser && view === "N" && <NewQuestion />}
       </div>
     );
   }
 }
 
 function mapStateToProps({ authedUser, users, questions }, { page }) {
-  const questionArray = Object.values(questions).sort(
-    (a, b) => b.timestamp - a.timestamp
-  );
-  const currentUser = users[authedUser];
-  const currentUserQuestions = currentUser ? currentUser.questions : [];
-  const currentUserAnswers = currentUser
-    ? Object.keys(currentUser.answers)
-    : [];
+  if (authedUser) {
+    const questionArray = Object.values(questions).sort(
+      (a, b) => b.timestamp - a.timestamp
+    );
+    const currentUser = users[authedUser];
+    const currentUserQuestions = currentUser ? currentUser.questions : [];
+    const currentUserAnswers = currentUser
+      ? Object.keys(currentUser.answers)
+      : [];
 
-  return {
-    allQuestions: questions,
-    currentUser,
-    currentUserQuestions,
-    page,
-    myQuestions: questionArray.filter(question =>
-      question.author === currentUser.id ? question : null
-    ),
-    answered: questionArray.filter(question =>
-      currentUserAnswers.includes(question.id) ? question : null
-    ),
-    unanswered: questionArray.filter(question =>
-      currentUserAnswers.includes(question.id) ? null : question
-    )
-  };
+    return {
+      allQuestions: questions,
+      currentUser,
+      currentUserQuestions,
+      page,
+      myQuestions: questionArray.filter(question =>
+        question.author === currentUser.id ? question : null
+      ),
+      answered: questionArray.filter(question =>
+        currentUserAnswers.includes(question.id) ? question : null
+      ),
+      unanswered: questionArray.filter(question =>
+        currentUserAnswers.includes(question.id) ? null : question
+      )
+    };
+  }
 }
 
-export default connect(mapStateToProps)(Dashboard);
+export default withRouter(connect(mapStateToProps)(Dashboard));

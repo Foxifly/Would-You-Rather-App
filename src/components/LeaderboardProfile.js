@@ -9,7 +9,7 @@ class LeaderboardProfile extends Component {
         <br />
         <div className="leaderboard-card">
           <div className="leaderboard-avatar-container">
-            <img className="leaderboard-avatar" src={user.avatarURL} />
+            <img alt={`${user.name}'s avatar`} className="leaderboard-avatar" src={user.avatarURL} />
           </div>
           <div className="leaderboard-name-container">
             <p className="leaderboard-name">

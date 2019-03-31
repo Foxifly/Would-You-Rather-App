@@ -10,7 +10,7 @@ class Profile extends Component {
         <br />
         <div className="profile-card">
           <div className="avatar-container">
-            <img className="profile-avatar" src={currentUser.avatarURL} />
+            <img alt={`${currentUser.name}'s avatar`} className="profile-avatar" src={currentUser.avatarURL} />
           </div>
           <div className="name-container">
             <p className="profile-name">

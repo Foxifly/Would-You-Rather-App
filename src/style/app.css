@@ -1,12 +1,17 @@
 html {
   height: 100%;
-  }
-  body {
-  margin: 0;
-  padding:0;
-  width:100%;
-  min-height:100vh;
-    background-color: #d6d9db
+}
 
-;
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100vh;
+  background-color: #d6d9db
+}
+
+.cow-error-img {
+  width: 90%;
+  border-radius: 10px;
+  margin-bottom: 15px;
 }

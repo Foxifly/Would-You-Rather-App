@@ -30,7 +30,7 @@ class Nav extends Component {
           </nav>
         )}
 
-        {!isLogin && (
+        {currUser && !isLogin && (
           <nav className="navigation">
             <div className="logo">Wyr</div>
             <div className="nav-item-container">
@@ -97,10 +97,12 @@ class Nav extends Component {
   }
 }
 function mapStateToProps({ authedUser, users }) {
-  console.log(authedUser, users);
-  const currUser = users[authedUser];
-  return {
-    currUser
-  };
+  if (authedUser) {
+    const currUser = users[authedUser];
+    return {
+      currUser
+    };
+  }
+
 }
 export default connect(mapStateToProps)(Nav);
