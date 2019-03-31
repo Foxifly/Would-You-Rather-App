@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { handleAddQuestion } from "../actions/shared";
 import { Redirect } from "react-router-dom";
-import '../style/newquestion.css'
+import "../style/newquestion.css";
 
 class NewQuestion extends Component {
   state = {
@@ -36,15 +36,19 @@ class NewQuestion extends Component {
 
     const { optionOne, optionTwo, category } = this.state;
     const { dispatch } = this.props;
-
-    dispatch(handleAddQuestion(optionOne, optionTwo, category));
-
-    this.setState(() => ({
-      optionOne: "",
-      optionTwo: "",
-      category: "",
-      toHome: true
-    }));
+    if (optionOne && optionTwo && category) {
+      dispatch(handleAddQuestion(optionOne, optionTwo, category));
+      this.setState(() => ({
+        optionOne: "",
+        optionTwo: "",
+        category: "",
+        toHome: true
+      }));
+    } else {
+      this.setState(() => ({
+        toHome: false
+      }));
+    }
   };
   render() {
     const { optionOne, optionTwo, category, toHome } = this.state;
@@ -53,24 +57,16 @@ class NewQuestion extends Component {
       return <Redirect to="/unanswered" />;
     }
     return (
-      <div>
-        <h3 className="center">Compose New</h3>
+      <div className="new">
+        <h1 className="header">New Question</h1>
+        <br />
+        <div className="new-question-container">
+          <div className="new-header">
+            <h3 className="WYR-header">Would You Rather...</h3>
+          </div>
 
-        <form className="new-question" onSubmit={this.handleSubmit}>
-          <input
-            placeholder="Option One"
-            value={optionOne}
-            onChange={this.handleOptionOneChange}
-            className="input-box"
-          />
-
-          <input
-            placeholder="Option Two"
-            value={optionTwo}
-            onChange={this.handleOptionTwoChange}
-            className="input-box"
-          />
-
+          <form className="new-question" onSubmit={this.handleSubmit}>
+          
           <input
             placeholder="Category"
             value={category}
@@ -78,14 +74,42 @@ class NewQuestion extends Component {
             className="input-box"
           />
 
-          <button
-            className="button"
-            type="submit"
-            disabled={optionOne === "" && optionTwo === "" && category === ""}
-          >
-            Submit
-          </button>
-        </form>
+          <br />
+
+            <input
+              placeholder="Option One"
+              value={optionOne}
+              onChange={this.handleOptionOneChange}
+              className="input-box-option"
+            />
+
+            <br />
+
+            <p className="or">-OR-</p>
+            <input
+              placeholder="Option Two"
+              value={optionTwo}
+              onChange={this.handleOptionTwoChange}
+              className="input-box-option"
+            />
+
+            <br />
+
+            <button
+              className="submit-button"
+              type="submit"
+              disabled={optionOne === "" && optionTwo === "" && category === ""}
+            >
+              Submit
+            </button>
+
+            {toHome === false && (
+              <p className="error-text">
+                Please finish the form before trying to submit!
+              </p>
+            )}
+          </form>
+        </div>
       </div>
     );
   }

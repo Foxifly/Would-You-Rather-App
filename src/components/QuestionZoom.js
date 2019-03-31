@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import Nav from "./Nav"
+import "../style/question.css"
 
 class Question extends Component {
   state = {
