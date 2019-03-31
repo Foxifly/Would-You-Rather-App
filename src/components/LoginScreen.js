@@ -66,8 +66,10 @@ class LoginScreen extends Component {
               </select>
               <br />
               <button className="login-button" type="submit">
-                {" "}
-                Login{" "}
+                Login
+              </button>
+              <button className="create-button">
+                Create Account
               </button>
             </div>
           </form>

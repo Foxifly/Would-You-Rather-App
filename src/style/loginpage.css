@@ -49,15 +49,23 @@ h2 {
   height: 30px;
 }
 
+.create-button,
 .login-button {
-  width: 50%;
+  width: 51%;
   padding: 10px;
-  margin: 20px 0;
+  margin: 20px 0 0 0;
   background-color: #477282;
   color: white;
   font-family: 'Muli', sans-serif;
   font-size: 16px;
   border-radius: 5px;
+    transition: ease 0.4s;
+}
+
+.create-button:hover,
+.login-button:hover {
+  background-color: #59808e;
+  cursor: pointer;
 }
 
 .invalid-user {
