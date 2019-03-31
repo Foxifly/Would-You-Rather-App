@@ -5,23 +5,14 @@ import "../style/questionlist.css";
 import { formatDate } from "../utils/helper";
 
 class Question extends Component {
-  state = {
-    option: ""
-  };
-  componentDidMount() {
-    const { question } = this.props;
-
-    const optionOneVoteCount = question.optionOne.votes.length;
-    const optionTwoVoteCount = question.optionTwo.votes.length;
-
-    this.setState({
-      voteCount: optionOneVoteCount + optionTwoVoteCount
-    });
-  }
-
   render() {
-    const { question, category } = this.props;
-    const { voteCount } = this.state;
+    const {
+      question,
+      category,
+      optionTwoVoteCount,
+      optionOneVoteCount,
+      voteCount
+    } = this.props;
 
     return (
       <div className="question-container">
@@ -54,8 +45,7 @@ class Question extends Component {
               to={{
                 pathname: `/question/${question.id}`,
                 state: {
-                  currQuestion: question,
-                  isAnswered: false
+                  currQuestion: question
                 }
               }}
             >
@@ -70,8 +60,7 @@ class Question extends Component {
               to={{
                 pathname: `/question/${question.id}`,
                 state: {
-                  currQuestion: question,
-                  isAnswered: true
+                  currQuestion: question
                 }
               }}
             >
@@ -85,4 +74,17 @@ class Question extends Component {
   }
 }
 
-export default withRouter(connect()(Question));
+function mapStateToProps({ questions }, { question }) {
+  console.log(question);
+  const optionOneVoteCount = question.optionOne.votes.length;
+  const optionTwoVoteCount = question.optionTwo.votes.length;
+  return {
+    questions,
+    question,
+    optionOneVoteCount,
+    optionTwoVoteCount,
+    voteCount: optionOneVoteCount + optionTwoVoteCount
+  };
+}
+
+export default withRouter(connect(mapStateToProps)(Question));

@@ -31,21 +31,11 @@ class Question extends Component {
     }
   };
   render() {
-    const { currQuestion, isAnswered } = this.props.location.state;
+    const { currQuestion } = this.props.location.state;
+    const {isAnswered, optionTwoPercent, optionOnePercent} = this.props;
     const { option } = this.state;
 
-    const optionOnePercent = Math.round(
-      (currQuestion.optionOne.votes.length /
-        (currQuestion.optionOne.votes.length +
-          currQuestion.optionTwo.votes.length)) *
-        100
-    );
-    const optionTwoPercent = Math.round(
-      (currQuestion.optionTwo.votes.length /
-        (currQuestion.optionOne.votes.length +
-          currQuestion.optionTwo.votes.length)) *
-        100
-    );
+
 
     return (
       <div>
@@ -138,11 +128,35 @@ class Question extends Component {
   }
 }
 
-function mapStateToProps({ authedUser, users }) {
+function mapStateToProps({ authedUser, users }, {location}) {
+  const currQuestion = location.state.currQuestion;
+  console.log("currQuestion", currQuestion)
+
   const currentUser = users[authedUser];
+  const currentUserAnswers = currentUser
+    ? Object.keys(currentUser.answers)
+    : [];
+
+    const optionOnePercent = Math.round(
+      (currQuestion.optionOne.votes.length /
+        (currQuestion.optionOne.votes.length +
+          currQuestion.optionTwo.votes.length)) *
+        100
+    );
+    const optionTwoPercent = Math.round(
+      (currQuestion.optionTwo.votes.length /
+        (currQuestion.optionOne.votes.length +
+          currQuestion.optionTwo.votes.length)) *
+        100
+    );
   return {
-    currentUser
+    currentUser,
+    isAnswered:  currentUserAnswers.includes(currQuestion.id) ? true : false,
+    optionOnePercent,
+    optionTwoPercent
   };
 }
+
+
 
 export default connect(mapStateToProps)(Question);
