@@ -34,6 +34,7 @@ class App extends Component {
                 <Route path="/new" exact component={() => <Dashboard page="N"/>} />
                 <Route path="/leaderboard" exact component={() => <Leaderboard/>} />
                 <Route path='/question/' component={QuestionZoom} />
+                <Route path='/404' component={PageNotFound} />
                 <Route component={PageNotFound} />
 
               </Switch>  </div>

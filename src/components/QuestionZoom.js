@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import Nav from "./Nav";
 import "../style/question.css";
 import { handleAddAnswer } from "../actions/shared";
+import {Redirect} from 'react-router-dom'
 
 class Question extends Component {
   state = {
@@ -22,25 +23,27 @@ class Question extends Component {
     e.preventDefault();
     if ((currentUser, question, option)) {
       this.setState({ successful: true });
-      this.props.dispatch(
-        handleAddAnswer(currentUser, question.id, option)
-      );
+      this.props.dispatch(handleAddAnswer(currentUser, question.id, option));
     } else {
       this.setState({ successful: false });
     }
   };
   render() {
-    const { currQuestion } = this.props.location.state;
-    const {isAnswered, question,  optionTwoPercent, optionOnePercent} = this.props;
+    const {
+      isAnswered,
+      question,
+      optionTwoPercent,
+      optionOnePercent, isQuestion
+    } = this.props;
     const { option } = this.state;
-
-
 
     return (
       <div>
         <Nav navItems={true} />
-
-        {isAnswered && currQuestion && (
+        {isQuestion === false &&
+          <Redirect to="/404" />
+        }
+        {isAnswered && question && (
           <div className="results-container">
             <div className="WYR-header-container">
               <h2 className="WYR-header">Would You Rather...</h2>
@@ -127,38 +130,41 @@ class Question extends Component {
   }
 }
 
-function mapStateToProps({ authedUser, users, questions}, {location}) {
+function mapStateToProps({ authedUser, users, questions }, { location }) {
 
-  const currQuestion = location.state.currQuestion;
-  const thisQuestion = questions[currQuestion.id]
-
-
+  if (location.state) {
+    const currQuestion = location.state.currQuestion;
+    const thisQuestion = questions[currQuestion.id];
   const currentUser = users[authedUser];
   const currentUserAnswers = currentUser
     ? Object.keys(currentUser.answers)
     : [];
 
-    const optionOnePercent = Math.round(
-      (thisQuestion.optionOne.votes.length /
-        (thisQuestion.optionOne.votes.length +
-          thisQuestion.optionTwo.votes.length)) *
-        100
-    );
-    const optionTwoPercent = Math.round(
-      (thisQuestion.optionTwo.votes.length /
-        (thisQuestion.optionOne.votes.length +
-          thisQuestion.optionTwo.votes.length)) *
-        100
-    );
+  const optionOnePercent = Math.round(
+    (thisQuestion.optionOne.votes.length /
+      (thisQuestion.optionOne.votes.length +
+        thisQuestion.optionTwo.votes.length)) *
+      100
+  );
+  const optionTwoPercent = Math.round(
+    (thisQuestion.optionTwo.votes.length /
+      (thisQuestion.optionOne.votes.length +
+        thisQuestion.optionTwo.votes.length)) *
+      100
+  );
   return {
     currentUser,
     question: thisQuestion,
-    isAnswered:  currentUserAnswers.includes(thisQuestion.id) ? true : false,
+    isAnswered: currentUserAnswers.includes(thisQuestion.id) ? true : false,
     optionOnePercent,
-    optionTwoPercent
+    optionTwoPercent,
+     isQuestion: true,
   };
+} else {
+  return {
+    isQuestion: false
+  }
 }
-
-
+}
 
 export default connect(mapStateToProps)(Question);
