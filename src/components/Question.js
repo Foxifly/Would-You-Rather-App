@@ -54,7 +54,8 @@ class Question extends Component {
               to={{
                 pathname: `/question/${question.id}`,
                 state: {
-                  currQuestion: question
+                  currQuestion: question,
+                  isAnswered: false
                 }
               }}
             >
@@ -69,7 +70,8 @@ class Question extends Component {
               to={{
                 pathname: `/question/${question.id}`,
                 state: {
-                  currQuestion: question
+                  currQuestion: question,
+                  isAnswered: true
                 }
               }}
             >

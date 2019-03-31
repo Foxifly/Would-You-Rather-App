@@ -66,7 +66,7 @@ class NewQuestion extends Component {
           </div>
 
           <form className="new-question" onSubmit={this.handleSubmit}>
-          
+
           <input
             placeholder="Category"
             value={category}

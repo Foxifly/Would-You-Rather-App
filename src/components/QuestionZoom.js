@@ -1,12 +1,13 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import Nav from "./Nav"
-import "../style/question.css"
-import {handleAddAnswer} from "../actions/shared"
+import Nav from "./Nav";
+import "../style/question.css";
+import { handleAddAnswer } from "../actions/shared";
 
 class Question extends Component {
   state = {
-    option: ""
+    option: "",
+    successful: ""
   };
 
   handleClick = e => {
@@ -17,25 +18,88 @@ class Question extends Component {
   };
   handleSubmit = e => {
     const { currQuestion } = this.props.location.state;
-    const {currentUser} = this.props;
-    const { option } = this.state;
+    const { currentUser } = this.props;
+    const { option, successful } = this.state;
     e.preventDefault();
-    this.props.dispatch(handleAddAnswer(currentUser, currQuestion.id, option ))
+    if ((currentUser, currQuestion, option)) {
+      this.setState({ successful: true });
+      this.props.dispatch(
+        handleAddAnswer(currentUser, currQuestion.id, option)
+      );
+    } else {
+      this.setState({ successful: false });
+    }
   };
   render() {
-    const { currQuestion } = this.props.location.state;
+    const { currQuestion, isAnswered } = this.props.location.state;
     const { option } = this.state;
+
+    const optionOnePercent = Math.round(
+      (currQuestion.optionOne.votes.length /
+        (currQuestion.optionOne.votes.length +
+          currQuestion.optionTwo.votes.length)) *
+        100
+    );
+    const optionTwoPercent = Math.round(
+      (currQuestion.optionTwo.votes.length /
+        (currQuestion.optionOne.votes.length +
+          currQuestion.optionTwo.votes.length)) *
+        100
+    );
 
     return (
       <div>
-      <Nav navItems={true} />
-        {currQuestion && (
-          <div>
-            <h2>Would You Rather...</h2>
+        <Nav navItems={true} />
 
-            <form onSubmit={this.handleSubmit}>
+        {isAnswered && currQuestion && (
+          <div className="results-container">
+            <div className="WYR-header-container">
+              <h2 className="WYR-header">Would You Rather...</h2>
+            </div>
+
+            <div className="answer-holder">
+              <p className="option">{currQuestion.optionOne.text}</p>
+              <div className="percent-outline">
+                <div
+                  style={{
+                    width: `${optionOnePercent}%`,
+                    height: "100%",
+                    backgroundColor: "#477282",
+                    borderRadius: "5px"
+                  }}
+                  className="percent-container"
+                >
+                  <p className="percent">{optionOnePercent}%</p>
+                </div>
+              </div>
+
+              <p className="option">{currQuestion.optionTwo.text}</p>
+              <div className="percent-outline">
+                <div
+                  className="percent-container"
+                  style={{
+                    width: `${optionTwoPercent}%`,
+                    height: "100%",
+                    backgroundColor: "#477282",
+                    borderRadius: "5px "
+                  }}
+                >
+                  <p className="percent">{optionTwoPercent}%</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {!isAnswered && currQuestion && (
+          <div className="results-container">
+            <div className="WYR-header-container">
+              <h2 className="WYR-header">Would You Rather...</h2>
+            </div>
+
+            <form className="answer-question" onSubmit={this.handleSubmit}>
               <div className="radio">
-                <label>
+                <label className="radio-label">
                   <input
                     onChange={this.handleClick}
                     type="radio"
@@ -47,7 +111,7 @@ class Question extends Component {
               </div>
 
               <div className="radio">
-                <label>
+                <label className="radio-label">
                   <input
                     onChange={this.handleClick}
                     type="radio"
@@ -58,8 +122,15 @@ class Question extends Component {
                 </label>
               </div>
 
-              <button type="submit">Submit</button>
+              <button className="submit-answer" type="submit">
+                Submit
+              </button>
             </form>
+            {this.state.successful === false && (
+              <p className="error-text">
+                Please answer the question to continue!
+              </p>
+            )}
           </div>
         )}
       </div>
@@ -67,11 +138,11 @@ class Question extends Component {
   }
 }
 
-function mapStateToProps({authedUser, users}) {
-  const currentUser = users[authedUser]
+function mapStateToProps({ authedUser, users }) {
+  const currentUser = users[authedUser];
   return {
     currentUser
-  }
+  };
 }
 
 export default connect(mapStateToProps)(Question);
