@@ -44,7 +44,7 @@ class LoginScreen extends Component {
 
   render() {
     if (this.state.toHome) {
-      return <Redirect to="/dashboard" />;
+      return <Redirect to="/unanswered" />;
     }
     return (
       <div className="login-container">

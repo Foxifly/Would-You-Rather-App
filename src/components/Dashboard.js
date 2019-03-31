@@ -26,12 +26,12 @@ class Dashboard extends Component {
     return (
       <div>
         <Nav navItems={true} />
-        <p>Welcome {currentUser.name}</p>
 
 
         {view === "M" && (
           <div className="my-questions">
           <Profile/>
+
             {myQuestions.map(question => (
               <Question key={question.id} question={question} category="M" />
             ))}
