@@ -8,7 +8,6 @@ export default function users(state = {}, action) {
         ...action.users
       };
     case ADD_QUESTION_TO_USER:
-    console.log("HELLO FROM THE USERS REDUCER")
       return {
         ...state,
         [action.question.author]: {
