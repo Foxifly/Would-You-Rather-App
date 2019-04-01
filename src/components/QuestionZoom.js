@@ -162,7 +162,7 @@ class Question extends Component {
 }
 
 function mapStateToProps({ authedUser, users, questions }, { location }) {
-  if (location.state) {
+  if (location.state && authedUser) {
     const currQuestion = location.state.currQuestion;
     const thisQuestion = questions[currQuestion.id];
     const questionCreator = currQuestion.author;
@@ -197,7 +197,7 @@ function mapStateToProps({ authedUser, users, questions }, { location }) {
       optionTwoVotes: thisQuestion.optionTwo.votes.length,
       isQuestion: true,
       creator: creatorInfo,
-      answer: currentUser.answers[thisQuestion.id]
+      answer: currentUserAnswers.includes(thisQuestion.id) ? currentUser.answers[thisQuestion.id] : null
     };
   } else {
     return {

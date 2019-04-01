@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import Question from "./Question";
 import NewQuestion from "./NewQuestion";
 import Profile from "./Profile";
+import ErrorPage from "./ErrorPage"
 import { Link, withRouter } from "react-router-dom";
 
 class Dashboard extends Component {
@@ -28,29 +29,7 @@ class Dashboard extends Component {
         <Nav navItems={true} />
 
         {!currentUser && (
-          <div className="error-page">
-            <h1 className="header-404">Error</h1>
-            <div className="container-404">
-              <p className="sorry-not-sorry">
-                Sorry for the trouble, but you must log in to access this page!
-              </p>
-              <img
-                className="cow-error-img"
-                alt="sad cow"
-                src="https://farm6.staticflickr.com/5125/5242994366_63f85e7547_b.jpg"
-              />
-              <br />
-
-              <Link
-                className="log-in"
-                to={{
-                  pathname: `/`
-                }}
-              >
-                Log In
-              </Link>
-            </div>
-          </div>
+          <ErrorPage/>
         )}
 
         {currentUser && view === "M" && (
@@ -118,7 +97,11 @@ function mapStateToProps({ authedUser, users, questions }, { page }) {
         currentUserAnswers.includes(question.id) ? null : question
       )
     };
-  }
+  }   else {
+      return {
+        isError: true
+      }
+    }
 }
 
 export default withRouter(connect(mapStateToProps)(Dashboard));

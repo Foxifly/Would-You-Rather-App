@@ -5,7 +5,7 @@ import { setAuthedUser } from "../actions/authUser";
 import { showLoading, hideLoading } from "react-redux-loading";
 import { saveQuestion, saveQuestionAnswer } from "../utils/api";
 
-const AUTHED_ID = "tylermcginnis";
+let AUTHED_ID = "";
 
 export default function handleInitialData() {
   return dispatch => {

@@ -1,7 +1,12 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-
+import {removeAuthedUser} from "../actions/authUser"
+import {Link} from 'react-router-dom'
 class Profile extends Component {
+  logout = (e) => {
+    e.preventDefault()
+    this.props.dispatch(removeAuthedUser())
+  }
   render() {
     const { currentUser } = this.props;
     return (
@@ -29,7 +34,15 @@ class Profile extends Component {
             </p>
           </div>
           <div className="logout-container">
-            <button className="log-out">Log Out</button>{" "}
+          <Link
+            className="log-out"
+            to={{
+              pathname: `/`
+            }}
+          >
+            Log Out
+
+          </Link>
           </div>
         </div>
         <br />

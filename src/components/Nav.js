@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 import "../style/nav.css";
 import { connect } from "react-redux";
+import {removeAuthedUser} from "../actions/authUser"
 
 class Nav extends Component {
   state = {
@@ -17,6 +18,10 @@ class Nav extends Component {
       //render login NAVBAR
       this.setState({ isLogin: true });
     }
+  }
+  logout = (e) => {
+    e.preventDefault()
+    this.props.dispatch(removeAuthedUser())
   }
 
   render() {
@@ -102,6 +107,11 @@ function mapStateToProps({ authedUser, users }) {
     return {
       currUser
     };
+  }
+  else {
+    return {
+      isError: true
+    }
   }
 
 }
