@@ -164,9 +164,15 @@ class Question extends Component {
 }
 
 function mapStateToProps({ authedUser, users, questions }, { location }) {
-  if (location.state && authedUser) {
+  if (
+    location.state &&
+    authedUser &&
+    questions &&
+    location.state.currQuestion &&
+    questions[location.state.currQuestion.id]
+  ) {
     const currQuestion = location.state.currQuestion;
-    const thisQuestion = questions[currQuestion.id];
+    const thisQuestion = questions[location.state.currQuestion.id];
     const questionCreator = currQuestion.author;
     const creatorInfo = users[questionCreator];
     const currentUser = users[authedUser];
@@ -174,34 +180,35 @@ function mapStateToProps({ authedUser, users, questions }, { location }) {
       ? Object.keys(currentUser.answers)
       : [];
 
-    const optionOnePercent = Math.round(
-      (thisQuestion.optionOne.votes.length /
-        (thisQuestion.optionOne.votes.length +
-          thisQuestion.optionTwo.votes.length)) *
-        100
-    );
+      const optionOnePercent = Math.round(
+        (thisQuestion.optionOne.votes.length /
+          (thisQuestion.optionOne.votes.length +
+            thisQuestion.optionTwo.votes.length)) *
+          100
+      );
 
-    const optionTwoPercent = Math.round(
-      (thisQuestion.optionTwo.votes.length /
-        (thisQuestion.optionOne.votes.length +
-          thisQuestion.optionTwo.votes.length)) *
-        100
-    );
+      const optionTwoPercent = Math.round(
+        (thisQuestion.optionTwo.votes.length /
+          (thisQuestion.optionOne.votes.length +
+            thisQuestion.optionTwo.votes.length)) *
+          100
+      );
 
-    return {
-      currentUser,
-      question: thisQuestion,
-      isAnswered: currentUserAnswers.includes(thisQuestion.id) ? true : false,
-      optionOnePercent,
-      optionTwoPercent,
-      optionOneVotes: thisQuestion.optionOne.votes.length,
-      optionTwoVotes: thisQuestion.optionTwo.votes.length,
-      isQuestion: true,
-      creator: creatorInfo,
-      answer: currentUserAnswers.includes(thisQuestion.id)
-        ? currentUser.answers[thisQuestion.id]
-        : null
-    };
+      return {
+        currentUser,
+        question: thisQuestion,
+        isAnswered: currentUserAnswers.includes(thisQuestion.id) ? true : false,
+        optionOnePercent,
+        optionTwoPercent,
+        optionOneVotes: thisQuestion.optionOne.votes.length,
+        optionTwoVotes: thisQuestion.optionTwo.votes.length,
+        isQuestion: true,
+        creator: creatorInfo,
+        answer: currentUserAnswers.includes(thisQuestion.id)
+          ? currentUser.answers[thisQuestion.id]
+          : null
+      };
+
   } else {
     return {
       isQuestion: false
