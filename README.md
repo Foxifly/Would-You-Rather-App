@@ -15,4 +15,17 @@ Please clone or download this repository for all the required files. After downl
 - Redux Thunk
 
 ### Project Requirements
-View the Udacity project rubric and requirements [https://review.udacity.com/#!/rubrics/1567/view](here)
+View the Udacity project rubric and requirements [here](https://review.udacity.com/#!/rubrics/1567/view)
+
+### Features
+- Fake authentication system
+- Fake database with users and questions
+- Actions and reducers that communicate with the database to share state across all components.
+- Users can answer user questions
+- Users can view question polling results
+- Users can add a new question
+- Users can view the leaderboard
+- Users can view their own profile
+
+### Credits
+This project was done for the Udacity React Nanodegree program. 
