@@ -43,7 +43,7 @@ class App extends Component {
                     component={() => <Dashboard page="M" />}
                   />
                   <Route
-                    path="/new"
+                    path="/add"
                     exact
                     component={() => <Dashboard page="N" />}
                   />

@@ -68,7 +68,7 @@ class Nav extends Component {
 
               <NavLink
                 className="nav-item"
-                to="/new"
+                to="/add"
                 exact
                 activeClassName="active"
               >
