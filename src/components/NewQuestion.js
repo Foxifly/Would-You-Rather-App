@@ -72,6 +72,7 @@ class NewQuestion extends Component {
               onChange={this.handleCategoryChange}
               className="input-box"
             />
+            <hr className="new-hr"/>
 
             <br />
 

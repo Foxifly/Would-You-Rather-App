@@ -39,6 +39,9 @@ class Dashboard extends Component {
             ))}
           </div>
         )}
+        {currentUser && view=== "U" && unanswered.length === 0 && <h2>You're all caught up! You don't have any unanswered questions.</h2>}
+        {currentUser && view=== "A" && answered.length === 0 && <h2>You haven't answered any questions!</h2>}
+        {currentUser && view=== "M" && myQuestions.length === 0 && <h2>You don't have any questions. Create one!</h2>}
 
         {currentUser && view === "U" && (
           <div>

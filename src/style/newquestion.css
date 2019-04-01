@@ -29,7 +29,7 @@
   text-align: center;
   padding: 20px;
 }
-
+.input-box,
 .input-box-option {
   font-family: 'Open Sans', sans-serif;
   height: 20px;
@@ -59,4 +59,8 @@
 .submit-button:hover {
   background-color: #59808e;
   cursor: pointer;
+}
+
+.new-hr {
+  width: 70%
 }
