@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import {removeAuthedUser} from "../actions/authUser"
-import {Link} from 'react-router-dom'
+import { removeAuthedUser } from "../actions/authUser";
+import { Link } from "react-router-dom";
 class Profile extends Component {
-  logout = (e) => {
-    e.preventDefault()
-    this.props.dispatch(removeAuthedUser())
-  }
+  logout = e => {
+    e.preventDefault();
+    this.props.dispatch(removeAuthedUser());
+  };
   render() {
     const { currentUser } = this.props;
     return (
@@ -15,7 +15,11 @@ class Profile extends Component {
         <br />
         <div className="profile-card">
           <div className="avatar-container">
-            <img alt={`${currentUser.name}'s avatar`} className="profile-avatar" src={currentUser.avatarURL} />
+            <img
+              alt={`${currentUser.name}'s avatar`}
+              className="profile-avatar"
+              src={currentUser.avatarURL}
+            />
           </div>
           <div className="name-container">
             <p className="profile-name">
@@ -34,15 +38,14 @@ class Profile extends Component {
             </p>
           </div>
           <div className="logout-container">
-          <Link
-            className="log-out"
-            to={{
-              pathname: `/`
-            }}
-          >
-            Log Out
-
-          </Link>
+            <Link
+              className="log-out"
+              to={{
+                pathname: `/`
+              }}
+            >
+              Log Out
+            </Link>
           </div>
         </div>
         <br />

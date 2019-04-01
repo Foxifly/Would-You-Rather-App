@@ -66,15 +66,14 @@ class NewQuestion extends Component {
           </div>
 
           <form className="new-question" onSubmit={this.handleSubmit}>
+            <input
+              placeholder="Category"
+              value={category}
+              onChange={this.handleCategoryChange}
+              className="input-box"
+            />
 
-          <input
-            placeholder="Category"
-            value={category}
-            onChange={this.handleCategoryChange}
-            className="input-box"
-          />
-
-          <br />
+            <br />
 
             <input
               placeholder="Option One"

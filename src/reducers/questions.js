@@ -21,13 +21,15 @@ export default function users(state = {}, action) {
     case ADD_ANSWER:
       return {
         ...state,
-         [action.qid]: {
-           ...state[action.qid],
-           [action.answer]: {
-             ...state[action.qid][action.answer],
-             votes: state[action.qid][action.answer].votes.concat([action.authedUser])
-           }
-         }
+        [action.qid]: {
+          ...state[action.qid],
+          [action.answer]: {
+            ...state[action.qid][action.answer],
+            votes: state[action.qid][action.answer].votes.concat([
+              action.authedUser
+            ])
+          }
+        }
       };
 
     default:

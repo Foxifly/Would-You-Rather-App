@@ -11,14 +11,13 @@
   background-color: #343b3e;
   padding: 20px;
   color: white;
-  border-radius: 4px 4px 0 0 ;
+  border-radius: 4px 4px 0 0;
 }
 
 .WYR-header {
   font-family: 'Muli', sans-serif;
   text-align: center;
   font-size: 28px;
-
 }
 
 .new-question {
@@ -26,10 +25,9 @@
   grid-template-columns: 1fr 1fr;
   grid-template-areas:
     "logo navlink profile" */
-
-    margin: 0 auto;
-    text-align: center;
-    padding: 20px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 20px;
 }
 
 .input-box-option {
@@ -38,12 +36,13 @@
   width: 70%;
   font-size: 18px;
 }
+
 .error-text {
   color: red;
   font-family: 'Open Sans', sans-serif;
 }
 
-.submit-button{
+.submit-button {
   background-color: #477282;
   padding: 10px 20px;
   width: 40%;

@@ -13,7 +13,6 @@
 }
 
 .logo {
-
   font-family: 'Luckiest Guy', cursive;
   color: white;
   font-size: 32px;
@@ -42,7 +41,6 @@
 .avatar-container-nav {
   grid-area: profile;
   justify-self: flex-end;
-
 }
 
 .nav-item:hover {

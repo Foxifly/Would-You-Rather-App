@@ -6,11 +6,7 @@ import { formatDate } from "../utils/helper";
 
 class Question extends Component {
   render() {
-    const {
-      question,
-      category,
-      voteCount
-    } = this.props;
+    const { question, category, voteCount } = this.props;
 
     return (
       <div className="question-container">
@@ -35,7 +31,9 @@ class Question extends Component {
             </Link>
           </div>
         )}
-        {category === "M" && !question && <h2>You don't have any questions!</h2>}
+        {category === "M" && !question && (
+          <h2>You don't have any questions!</h2>
+        )}
         {category === "U" && (
           <div className="zoom-button-container">
             <Link
@@ -51,7 +49,9 @@ class Question extends Component {
             </Link>
           </div>
         )}
-        {category === "U" && !question && <h2>You answered all the questions!</h2>}
+        {category === "U" && !question && (
+          <h2>You answered all the questions!</h2>
+        )}
         {category === "A" && (
           <div className="zoom-button-container">
             <Link

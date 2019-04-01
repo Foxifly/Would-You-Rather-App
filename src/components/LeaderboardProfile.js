@@ -1,15 +1,19 @@
-import React, {Component} from 'react';
-import "../style/leaderboard.css"
+import React, { Component } from "react";
+import "../style/leaderboard.css";
 
 class LeaderboardProfile extends Component {
   render() {
-    const {user } = this.props;
-    return(
+    const { user } = this.props;
+    return (
       <div className="leaderboard-container">
         <br />
         <div className="leaderboard-card">
           <div className="leaderboard-avatar-container">
-            <img alt={`${user.name}'s avatar`} className="leaderboard-avatar" src={user.avatarURL} />
+            <img
+              alt={`${user.name}'s avatar`}
+              className="leaderboard-avatar"
+              src={user.avatarURL}
+            />
           </div>
           <div className="leaderboard-name-container">
             <p className="leaderboard-name">
@@ -28,16 +32,16 @@ class LeaderboardProfile extends Component {
             </p>
           </div>
           <div className="leaderboard-score-container">
-          <p className="leaderboard-score-header">Score</p>
-          <p className="leaderboard-score">
-            {Object.keys(user.answers).length + user.questions.length}
-          </p>
+            <p className="leaderboard-score-header">Score</p>
+            <p className="leaderboard-score">
+              {Object.keys(user.answers).length + user.questions.length}
+            </p>
           </div>
         </div>
         <br />
       </div>
-    )
+    );
   }
 }
 
-export default LeaderboardProfile
+export default LeaderboardProfile;

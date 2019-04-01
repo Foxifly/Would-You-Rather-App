@@ -1,6 +1,10 @@
 import { getInitialData } from "../utils/api";
 import { receiveQuestions, addQuestion, saveAnswer } from "./questions";
-import { receiveUsers, addUserQuestion, saveUserAnswer } from "../actions/users";
+import {
+  receiveUsers,
+  addUserQuestion,
+  saveUserAnswer
+} from "../actions/users";
 import { setAuthedUser } from "../actions/authUser";
 import { showLoading, hideLoading } from "react-redux-loading";
 import { saveQuestion, saveQuestionAnswer } from "../utils/api";

@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import Question from "./Question";
 import NewQuestion from "./NewQuestion";
 import Profile from "./Profile";
-import ErrorPage from "./ErrorPage"
+import ErrorPage from "./ErrorPage";
 import { Link, withRouter } from "react-router-dom";
 
 class Dashboard extends Component {
@@ -28,9 +28,7 @@ class Dashboard extends Component {
       <div>
         <Nav navItems={true} />
 
-        {!currentUser && (
-          <ErrorPage/>
-        )}
+        {!currentUser && <ErrorPage />}
 
         {currentUser && view === "M" && (
           <div className="my-questions">
@@ -97,11 +95,11 @@ function mapStateToProps({ authedUser, users, questions }, { page }) {
         currentUserAnswers.includes(question.id) ? null : question
       )
     };
-  }   else {
-      return {
-        isError: true
-      }
-    }
+  } else {
+    return {
+      isError: true
+    };
+  }
 }
 
 export default withRouter(connect(mapStateToProps)(Dashboard));

@@ -5,11 +5,10 @@
   transition: ease 0.4s;
   margin: 20px;
 }
+
 .zoom-button-container.hover {
   background-color: #477282;
 }
-
-
 
 .question-zoom-button {
   background-color: #477282;
@@ -22,10 +21,10 @@
   color: white;
   font-family: 'Muli', sans-serif;
 }
+
 .question-zoom-button:hover {
   background-color: #59808e;
   cursor: pointer;
-
   padding: 10px 20px;
   width: 25%;
   margin: 10px auto;

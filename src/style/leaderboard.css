@@ -85,18 +85,17 @@
   text-transform: uppercase;
   font-weight: bold;
   color: black;
-
 }
 
 .leaderboard-score-container {
   background-color: #477282;
   border-radius: 10px;
   width: 100px;
-  height:100px;
+  height: 100px;
 }
 
 .leaderboard-score-header {
-    text-align: center;
+  text-align: center;
   background-color: #343b3e;
   color: white;
   padding: 10px;
@@ -109,9 +108,9 @@
 .leaderboard-score {
   text-align: center;
   font-size: 32px;
-    font-family: 'Open Sans', sans-serif;
-    font-weight: bolder;
-    margin: 0 auto;
-    color: white;
-    padding-top: 7px;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: bolder;
+  margin: 0 auto;
+  color: white;
+  padding-top: 7px;
 }

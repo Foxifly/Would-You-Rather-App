@@ -68,9 +68,7 @@ class LoginScreen extends Component {
               <button className="login-button" type="submit">
                 Login
               </button>
-              <button className="create-button">
-                Create Account
-              </button>
+              <button className="create-button">Create Account</button>
             </div>
           </form>
 

@@ -1,6 +1,6 @@
 export const RECEIVE_QUESTIONS = "RECEIVE_QUESTIONS";
 export const ADD_QUESTION = "ADD_QUESTION";
-export const ADD_ANSWER = "ADD_ANSWER"
+export const ADD_ANSWER = "ADD_ANSWER";
 
 export function receiveQuestions(questions) {
   return {
@@ -22,5 +22,5 @@ export function saveAnswer(authedUser, qid, answer) {
     authedUser,
     qid,
     answer
-  }
+  };
 }

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 import "../style/nav.css";
 import { connect } from "react-redux";
-import {removeAuthedUser} from "../actions/authUser"
+import { removeAuthedUser } from "../actions/authUser";
 
 class Nav extends Component {
   state = {
@@ -19,10 +19,10 @@ class Nav extends Component {
       this.setState({ isLogin: true });
     }
   }
-  logout = (e) => {
-    e.preventDefault()
-    this.props.dispatch(removeAuthedUser())
-  }
+  logout = e => {
+    e.preventDefault();
+    this.props.dispatch(removeAuthedUser());
+  };
 
   render() {
     const { currUser } = this.props;
@@ -92,7 +92,11 @@ class Nav extends Component {
                 exact
                 activeClassName="ignore-active"
               >
-                <img alt={`${currUser.name}'s avatar'`} className="avatar" src={currUser.avatarURL} />
+                <img
+                  alt={`${currUser.name}'s avatar'`}
+                  className="avatar"
+                  src={currUser.avatarURL}
+                />
               </NavLink>
             </div>
           </nav>
@@ -107,12 +111,10 @@ function mapStateToProps({ authedUser, users }) {
     return {
       currUser
     };
-  }
-  else {
+  } else {
     return {
       isError: true
-    }
+    };
   }
-
 }
 export default connect(mapStateToProps)(Nav);

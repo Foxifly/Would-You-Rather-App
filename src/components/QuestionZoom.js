@@ -57,7 +57,9 @@ class Question extends Component {
               <p className="votes">
                 Votes: {optionOneVotes} of {optionTwoVotes + optionOneVotes}{" "}
               </p>
-                {answer === "optionOne" && <p className="your-answer">Your Answer</p>}
+              {answer === "optionOne" && (
+                <p className="your-answer">Your Answer</p>
+              )}
               <div className="percent-outline">
                 <div
                   style={{
@@ -72,15 +74,15 @@ class Question extends Component {
                 </div>
               </div>
 
-
               <hr className="option-break" />
-
 
               <p className="option">{question.optionTwo.text}</p>
               <p className="votes">
                 Votes: {optionTwoVotes} of {optionTwoVotes + optionOneVotes}
               </p>
-                {answer === "optionTwo" && <p className="your-answer">Your Answer</p>}
+              {answer === "optionTwo" && (
+                <p className="your-answer">Your Answer</p>
+              )}
               <div className="percent-outline">
                 <div
                   className="percent-container"
@@ -186,7 +188,6 @@ function mapStateToProps({ authedUser, users, questions }, { location }) {
         100
     );
 
-
     return {
       currentUser,
       question: thisQuestion,
@@ -197,7 +198,9 @@ function mapStateToProps({ authedUser, users, questions }, { location }) {
       optionTwoVotes: thisQuestion.optionTwo.votes.length,
       isQuestion: true,
       creator: creatorInfo,
-      answer: currentUserAnswers.includes(thisQuestion.id) ? currentUser.answers[thisQuestion.id] : null
+      answer: currentUserAnswers.includes(thisQuestion.id)
+        ? currentUser.answers[thisQuestion.id]
+        : null
     };
   } else {
     return {
