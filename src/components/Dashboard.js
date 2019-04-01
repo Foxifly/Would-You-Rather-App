@@ -5,7 +5,6 @@ import Question from "./Question";
 import NewQuestion from "./NewQuestion";
 import Profile from "./Profile";
 import ErrorPage from "./ErrorPage";
-import { Link, withRouter } from "react-router-dom";
 
 class Dashboard extends Component {
   state = {
@@ -105,4 +104,4 @@ function mapStateToProps({ authedUser, users, questions }, { page }) {
   }
 }
 
-export default withRouter(connect(mapStateToProps)(Dashboard));
+export default connect(mapStateToProps)(Dashboard);
