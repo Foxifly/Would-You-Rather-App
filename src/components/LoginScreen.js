@@ -3,13 +3,14 @@ import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { handleSwitchUser } from "../actions/authUser";
 import "../style/loginpage.css";
-
+import {fakeAuth} from "../utils/api"
 import Nav from "./Nav";
 
 class LoginScreen extends Component {
   state = {
     id: "",
-    isBlank: null
+    isBlank: null,
+    redirectToReferrer: false
   };
 
   handleSubmit = e => {
@@ -22,6 +23,11 @@ class LoginScreen extends Component {
         isBlank: true,
         toHome: id ? true : false
       }));
+      fakeAuth.authenticate(()=>
+        this.setState({
+          redirectToReferrer: true
+        })
+      )
     } else {
       this.setState(() => ({
         isBlank: false
@@ -43,9 +49,13 @@ class LoginScreen extends Component {
   };
 
   render() {
-    if (this.state.toHome) {
-      return <Redirect to="/unanswered" />;
+    const {redirectToReferrer} = this.state;
+    const {from} = this.props.location.state || { from: {pathname: '/unanswered'}}
+
+    if (redirectToReferrer === true) {
+      return (<Redirect to={from} />)
     }
+
     return (
       <div className="login-container">
         <Nav navItems={false} />

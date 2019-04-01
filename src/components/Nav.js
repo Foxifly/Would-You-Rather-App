@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 import "../style/nav.css";
 import { connect } from "react-redux";
 import { removeAuthedUser } from "../actions/authUser";
+import {fakeAuth} from "../utils/api"
 
 class Nav extends Component {
   state = {
@@ -76,6 +77,7 @@ class Nav extends Component {
               </NavLink>
 
               <NavLink
+                onClick={()=> fakeAuth.signout(()=> console.log("signed out"))}
                 className="nav-item"
                 to="/"
                 exact

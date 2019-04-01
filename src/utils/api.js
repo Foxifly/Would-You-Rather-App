@@ -21,3 +21,15 @@ export function saveQuestion(info) {
 export function saveQuestionAnswer(one, two, three) {
   return _saveQuestionAnswer(one, two, three);
 }
+
+export const fakeAuth = {
+  isAuthenticated: false,
+  authenticate(callback) {
+    this.isAuthenticated = true
+    setTimeout(callback, 100)
+  },
+  signout(callback) {
+    this.isAuthenticated = false
+    setTimeout(callback, 100)
+  }
+}
