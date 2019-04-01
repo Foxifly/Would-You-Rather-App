@@ -17,7 +17,7 @@
   background-color: #343b3e;
   padding: 20px;
   color: white;
-  border-radius: 4px 4px 0 0 ;
+  border-radius: 4px 4px 0 0;
 }
 
 .WYR-header {
@@ -34,9 +34,11 @@
 }
 
 .option {
-    font-family: 'Open Sans', sans-serif;
+  font-family: 'Open Sans', sans-serif;
   text-align: center;
   font-weight: bold;
+  text-transform: capitalize;
+  margin-bottom: 0;
 }
 
 .percent {
@@ -44,38 +46,35 @@
   color: white;
   text-align: right;
   padding: 2px 10px 0 5px
-
 }
 
 .answer-question {
   width: 50%;
   margin: 0 auto;
   padding: 25px 0 0px 0;
-
 }
-.radio-label {
 
-    font-family: 'Open Sans', sans-serif;
-      font-size: 20px;
-      text-transform: capitalize;
+.radio-label {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 20px;
+  text-transform: capitalize;
 }
 
 .radio-label:hover {
   color: #343B3E;
-  cursor:pointer;
+  cursor: pointer;
   font-weight: bold;
 }
-
 
 .error-text {
   text-align: center;
 }
+
 .radio {
   padding: 10px 0;
-
 }
 
-.submit-answer{
+.submit-answer {
   ;
   background-color: #477282;
   padding: 10px 20px;
@@ -94,4 +93,36 @@
 .submit-answer:hover {
   background-color: #59808e;
   cursor: pointer;
+}
+
+.created-by {
+  width: 35%;
+  margin: 0 auto;
+}
+
+.created-by-name {
+  font-family: 'Open Sans Condensed', sans-serif;
+  padding-top: 14px;
+}
+
+.votes {
+  font-family: 'Open Sans Condensed', sans-serif;
+  margin: 0;
+  text-align: center;
+}
+
+.option-break {
+  width: 100%;
+  margin: 40px 0;
+}
+
+.your-answer {
+  text-align: center;
+  font-family: 'Open Sans', sans-serif;
+  text-align: center;
+  padding: 5px;
+  background-color: #b5c6cd;
+  border-radius: 50px;
+  width: 50%;
+  margin: 0 auto;
 }

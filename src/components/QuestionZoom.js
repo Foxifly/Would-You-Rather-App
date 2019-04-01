@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import Nav from "./Nav";
 import "../style/question.css";
 import { handleAddAnswer } from "../actions/shared";
-import {Redirect} from 'react-router-dom'
+import { Redirect } from "react-router-dom";
 
 class Question extends Component {
   state = {
@@ -33,16 +33,19 @@ class Question extends Component {
       isAnswered,
       question,
       optionTwoPercent,
-      optionOnePercent, isQuestion
+      optionOnePercent,
+      optionOneVotes,
+      optionTwoVotes,
+      isQuestion,
+      creator,
+      answer
     } = this.props;
     const { option, successful } = this.state;
 
     return (
       <div>
         <Nav navItems={true} />
-        {isQuestion === false &&
-          <Redirect to="/404" />
-        }
+        {isQuestion === false && <Redirect to="/404" />}
         {isAnswered && question && (
           <div className="results-container">
             <div className="WYR-header-container">
@@ -51,6 +54,10 @@ class Question extends Component {
 
             <div className="answer-holder">
               <p className="option">{question.optionOne.text}</p>
+              <p className="votes">
+                Votes: {optionOneVotes} of {optionTwoVotes + optionOneVotes}{" "}
+              </p>
+                {answer === "optionOne" && <p className="your-answer">Your Answer</p>}
               <div className="percent-outline">
                 <div
                   style={{
@@ -65,7 +72,15 @@ class Question extends Component {
                 </div>
               </div>
 
+
+              <hr className="option-break" />
+
+
               <p className="option">{question.optionTwo.text}</p>
+              <p className="votes">
+                Votes: {optionTwoVotes} of {optionTwoVotes + optionOneVotes}
+              </p>
+                {answer === "optionTwo" && <p className="your-answer">Your Answer</p>}
               <div className="percent-outline">
                 <div
                   className="percent-container"
@@ -79,6 +94,14 @@ class Question extends Component {
                   <p className="percent">{optionTwoPercent}%</p>
                 </div>
               </div>
+            </div>
+            <div className="created-by">
+              <img
+                alt={`${creator.name}'s avatar`}
+                className="avatar"
+                src={creator.avatarURL}
+              />
+              <p className="created-by-name">created by {creator.name}</p>
             </div>
           </div>
         )}
@@ -123,6 +146,14 @@ class Question extends Component {
                 Please answer the question to continue!
               </p>
             )}
+            <div className="created-by">
+              <img
+                alt={`${creator.name}'s avatar`}
+                className="avatar"
+                src={creator.avatarURL}
+              />
+              <p className="created-by-name">created by {creator.name}</p>
+            </div>
           </div>
         )}
       </div>
@@ -131,40 +162,48 @@ class Question extends Component {
 }
 
 function mapStateToProps({ authedUser, users, questions }, { location }) {
-
   if (location.state) {
     const currQuestion = location.state.currQuestion;
     const thisQuestion = questions[currQuestion.id];
-  const currentUser = users[authedUser];
-  const currentUserAnswers = currentUser
-    ? Object.keys(currentUser.answers)
-    : [];
+    const questionCreator = currQuestion.author;
+    const creatorInfo = users[questionCreator];
+    const currentUser = users[authedUser];
+    const currentUserAnswers = currentUser
+      ? Object.keys(currentUser.answers)
+      : [];
 
-  const optionOnePercent = Math.round(
-    (thisQuestion.optionOne.votes.length /
-      (thisQuestion.optionOne.votes.length +
-        thisQuestion.optionTwo.votes.length)) *
-      100
-  );
-  const optionTwoPercent = Math.round(
-    (thisQuestion.optionTwo.votes.length /
-      (thisQuestion.optionOne.votes.length +
-        thisQuestion.optionTwo.votes.length)) *
-      100
-  );
-  return {
-    currentUser,
-    question: thisQuestion,
-    isAnswered: currentUserAnswers.includes(thisQuestion.id) ? true : false,
-    optionOnePercent,
-    optionTwoPercent,
-     isQuestion: true,
-  };
-} else {
-  return {
-    isQuestion: false
+    const optionOnePercent = Math.round(
+      (thisQuestion.optionOne.votes.length /
+        (thisQuestion.optionOne.votes.length +
+          thisQuestion.optionTwo.votes.length)) *
+        100
+    );
+
+    const optionTwoPercent = Math.round(
+      (thisQuestion.optionTwo.votes.length /
+        (thisQuestion.optionOne.votes.length +
+          thisQuestion.optionTwo.votes.length)) *
+        100
+    );
+
+
+    return {
+      currentUser,
+      question: thisQuestion,
+      isAnswered: currentUserAnswers.includes(thisQuestion.id) ? true : false,
+      optionOnePercent,
+      optionTwoPercent,
+      optionOneVotes: thisQuestion.optionOne.votes.length,
+      optionTwoVotes: thisQuestion.optionTwo.votes.length,
+      isQuestion: true,
+      creator: creatorInfo,
+      answer: currentUser.answers[thisQuestion.id]
+    };
+  } else {
+    return {
+      isQuestion: false
+    };
   }
-}
 }
 
 export default connect(mapStateToProps)(Question);
