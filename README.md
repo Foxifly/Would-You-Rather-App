@@ -7,7 +7,7 @@
 - [Features](https://github.com/Foxifly/Would-You-Rather-App#features)
 - [Installation](https://github.com/Foxifly/Would-You-Rather-App#installation)
 - [Dependencies](https://github.com/Foxifly/Would-You-Rather-App#dependencies)
-- [Actions, Reducers, and Middleware]https://github.com/Foxifly/Would-You-Rather-App/blob/master/README.md#actions-reducers-and-middleware)
+- [Actions, Reducers, and Middleware](https://github.com/Foxifly/Would-You-Rather-App/blob/master/README.md#actions-reducers-and-middleware)
 - [Future Enhancements](https://github.com/Foxifly/Would-You-Rather-App#future-enhancements)
 - [Poject Requirements](https://github.com/Foxifly/Would-You-Rather-App#project-requirements)
 - [Credits](https://github.com/Foxifly/Would-You-Rather-App#credits)
