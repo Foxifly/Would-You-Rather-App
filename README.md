@@ -7,7 +7,7 @@
 - [Features](https://github.com/Foxifly/Would-You-Rather-App#features)
 - [Installation](https://github.com/Foxifly/Would-You-Rather-App#installation)
 - [Dependencies](https://github.com/Foxifly/Would-You-Rather-App#dependencies)
-- [Actions, Reducers, and Middleware](https://github.com/Foxifly/Would-You-Rather-App#)
+- [Actions, Reducers, and Middleware]https://github.com/Foxifly/Would-You-Rather-App/blob/master/README.md#actions-reducers-and-middleware)
 - [Future Enhancements](https://github.com/Foxifly/Would-You-Rather-App#future-enhancements)
 - [Poject Requirements](https://github.com/Foxifly/Would-You-Rather-App#project-requirements)
 - [Credits](https://github.com/Foxifly/Would-You-Rather-App#credits)
@@ -31,7 +31,7 @@ Please clone or download this repository for all the required files. After downl
 ### Dependencies
 - [React](https://reactjs.org/)
 - [React Dom](https://reactjs.org/docs/react-dom.html)
-- [React Redux] (https://www.npmjs.com/package/react-redux)
+- [React Redux](https://www.npmjs.com/package/react-redux)
 - [React Redux Loading](https://www.npmjs.com/package/react-redux-loading)
 - [React Router Dom](https://www.npmjs.com/package/react-router-dom)
 - [Redux](https://www.npmjs.com/package/redux)
